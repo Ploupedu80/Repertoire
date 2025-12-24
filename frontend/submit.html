@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soumettre un serveur - GameHub Repertoire</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <nav>
+        <div class="nav-left">
+          <a href="landing.html">Accueil</a>
+          <a href="index.html">Explorer</a>
+        </div>
+        <div class="nav-right">
+          <a href="profile.html">Mon Compte</a>
+          <a href="#" id="logout-link">Déconnexion</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Soumettre un serveur Discord</h2>
+    <form id="submit-form">
+      <div>
+        <label for="name">Nom du serveur:</label>
+        <input type="text" id="name" required>
+      </div>
+      <div>
+        <label for="inviteLink">Lien d'invitation:</label>
+        <input type="url" id="inviteLink" required>
+      </div>
+      <div>
+        <label for="icon">Icône (URL):</label>
+        <input type="url" id="icon">
+      </div>
+      <div>
+        <label for="banner">Bannière (URL):</label>
+        <input type="url" id="banner">
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" required></textarea>
+      </div>
+      <div>
+        <label for="memberCount">Nombre de membres:</label>
+        <input type="number" id="memberCount" required>
+      </div>
+      <div>
+        <label for="activityLevel">Niveau d'activité:</label>
+        <select id="activityLevel" required>
+          <option value="Low">Faible</option>
+          <option value="Medium">Moyenne</option>
+          <option value="High">Élevée</option>
+        </select>
+      </div>
+      <div>
+        <label for="serverType">Type de serveur:</label>
+        <select id="serverType" required>
+          <option value="Gaming">Gaming</option>
+          <option value="Community">Community</option>
+          <option value="RP">RP</option>
+          <option value="Dev">Dev</option>
+          <option value="eSport">eSport</option>
+        </select>
+      </div>
+      <div>
+        <label for="tags">Tags (séparés par des virgules):</label>
+        <input type="text" id="tags">
+      </div>
+      <button type="submit" class="btn">Soumettre</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 GameHub Repertoire. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="privacy-policy.html">Politique de confidentialité</a>
+        <a href="terms-of-service.html">Conditions d'utilisation</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/submit.js"></script>
+</body>
+</html>

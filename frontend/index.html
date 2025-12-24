@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameHub Repertoire</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <nav>
+        <div class="nav-left">
+          <a href="#" id="home-link" class="active">Accueil</a>
+          <a href="#" id="submit-link">Soumettre un serveur</a>
+        </div>
+        <div class="nav-right">
+          <a href="#" id="profile-link" style="display:none;">Mon Compte</a>
+          <a href="#" id="support-link" style="display:none;">Support</a>
+          <a href="#" id="admin-link" style="display:none;">Admin</a>
+          <a href="#" id="login-link" class="btn btn-primary">Connexion</a>
+          <a href="#" id="logout-link" style="display:none;">Déconnexion</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Découvrez les meilleurs serveurs Discord gaming</h2>
+      <p class="hero-subtitle">Des communautés actives, vérifiées et classées par activité</p>
+    </section>
+
+    <div id="announcements-banner" style="display:none;">
+      <!-- Announcements will be shown here -->
+    </div>
+    <div class="search-section">
+      <div class="search-bar fade-in-up">
+        <input type="text" id="search" placeholder="Rechercher un serveur : Minecraft, RP, Dev…">
+      </div>
+      <div class="filters-container fade-in-up">
+        <button id="filter-toggle" class="filter-toggle">
+          <span class="filter-icon">🔍</span>
+          Filtres
+          <span class="filter-arrow">▼</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div id="filter-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-content filter-modal-content">
+        <div class="modal-header">
+          <h3>Filtrer les serveurs</h3>
+          <button class="modal-close" id="close-filter-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="filter-group">
+            <label for="type-filter">Type de serveur</label>
+            <select id="type-filter" class="filter-select">
+              <option value="">Tous les types</option>
+              <option value="Gaming">🎮 Gaming</option>
+              <option value="Community">👥 Community</option>
+              <option value="RP">🎭 RP</option>
+              <option value="Dev">💻 Dev</option>
+              <option value="eSport">🏆 eSport</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="activity-filter">Niveau d'activité</label>
+            <select id="activity-filter" class="filter-select">
+              <option value="">Toutes les activités</option>
+              <option value="Low">📉 Faible</option>
+              <option value="Medium">📊 Moyenne</option>
+              <option value="High">📈 Élevée</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button id="reset-filters" class="btn btn-secondary">Réinitialiser</button>
+            <button id="apply-filters" class="btn btn-primary">Appliquer les filtres</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="server-list" class="server-grid">
+      <!-- Server cards will be loaded here -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 GameHub Repertoire. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="privacy-policy.html">Politique de confidentialité</a>
+        <a href="terms-of-service.html">Conditions d'utilisation</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

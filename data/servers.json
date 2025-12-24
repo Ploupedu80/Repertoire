@@ -1,0 +1,55 @@
+[
+  {
+    "id": "1",
+    "submittedBy": "4",
+    "name": "Gaming Community",
+    "inviteLink": "https://discord.gg/gaming",
+    "icon": "https://example.com/icon1.png",
+    "banner": "https://example.com/banner1.png",
+    "description": "A great gaming community server.",
+    "memberCount": 1500,
+    "activityLevel": "High",
+    "serverType": "Gaming",
+    "tags": [
+      "gaming",
+      "community"
+    ],
+    "status": "approved",
+    "suspended": false
+  },
+  {
+    "id": "2",
+    "submittedBy": "4",
+    "name": "Dev Hub",
+    "inviteLink": "https://discord.gg/dev",
+    "icon": "https://example.com/icon2.png",
+    "banner": "https://example.com/banner2.png",
+    "description": "For developers to share code and ideas.",
+    "memberCount": 500,
+    "activityLevel": "Medium",
+    "serverType": "Dev",
+    "tags": [
+      "development",
+      "coding"
+    ],
+    "status": "approved",
+    "suspended": false
+  },
+  {
+    "id": "cb18e0ef-71b9-4392-9184-afebc293aceb",
+    "submittedBy": "698982039105437787",
+    "name": "RSG Support",
+    "inviteLink": "http://localhost:3000/submit.html",
+    "icon": "http://localhost:3000/submit.html",
+    "banner": "http://localhost:3000/submit.html",
+    "description": "test",
+    "memberCount": 100,
+    "activityLevel": "Low",
+    "serverType": "eSport",
+    "tags": [
+      "test"
+    ],
+    "status": "pending",
+    "suspended": false
+  }
+]

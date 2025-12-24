@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "username": "developer",
+    "email": "dev@gamehub.com",
+    "password": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+    "role": "developer",
+    "blacklisted": false
+  },
+  {
+    "id": "2",
+    "username": "admin",
+    "email": "admin@gamehub.com",
+    "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "role": "admin",
+    "blacklisted": false
+  },
+  {
+    "id": "3",
+    "username": "moderator",
+    "email": "mod@gamehub.com",
+    "password": "09fbcc458fb3430db7ec54ee95635e7fbc06ccfd982b49c55ec53ab8ac2397e7",
+    "role": "moderator",
+    "blacklisted": false
+  },
+  {
+    "id": "4",
+    "username": "user",
+    "email": "user@gamehub.com",
+    "password": "e606e38b0d8c19b24cf0ee3808183162ea7cd63ff7912dbb22b5e803286b4446",
+    "role": "user",
+    "blacklisted": false
+  },
+  {
+    "id": "698982039105437787",
+    "discordId": "698982039105437787",
+    "username": "ryan__sg",
+    "globalName": "𝐑𝐲𝐚𝐧 𝐒𝐆",
+    "email": "ryansagnier30@gmail.com",
+    "avatar": "878e02d93cf1ba03ee7db524184aa76c",
+    "discriminator": "0",
+    "banner": null,
+    "role": "user",
+    "blacklisted": false,
+    "lastLogin": "2025-12-24T14:57:49.535Z"
+  }
+]

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier le serveur - GameHub Repertoire</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <nav>
+        <a href="landing.html">Accueil</a>
+        <a href="index.html">Explorer</a>
+        <a href="profile.html">Mon Compte</a>
+        <a href="#" id="logout-link">Déconnexion</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="submit-container">
+      <h2>Modifier le serveur Discord</h2>
+      <form id="edit-server-form">
+        <input type="hidden" id="server-id" name="server-id">
+
+        <label for="name">Nom du serveur:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="invite-link">Lien d'invitation:</label>
+        <input type="url" id="invite-link" name="invite-link" required>
+
+        <label for="banner">URL de la bannière (optionnel):</label>
+        <input type="url" id="banner" name="banner">
+
+        <label for="icon">URL de l'icône (optionnel):</label>
+        <input type="url" id="icon" name="icon">
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="member-count">Nombre de membres:</label>
+        <input type="number" id="member-count" name="member-count" required min="1">
+
+        <label for="server-type">Type de serveur:</label>
+        <select id="server-type" name="server-type" required>
+          <option value="Gaming">Gaming</option>
+          <option value="Community">Community</option>
+          <option value="RP">RP</option>
+          <option value="Dev">Dev</option>
+          <option value="eSport">eSport</option>
+        </select>
+
+        <label for="activity-level">Niveau d'activité:</label>
+        <select id="activity-level" name="activity-level" required>
+          <option value="Low">Faible</option>
+          <option value="Medium">Moyenne</option>
+          <option value="High">Élevée</option>
+        </select>
+
+        <label for="tags">Tags (séparés par des virgules):</label>
+        <input type="text" id="tags" name="tags" placeholder="gaming, community, fun">
+
+        <button type="submit" class="btn">Mettre à jour le serveur</button>
+        <button type="button" class="btn btn-danger" id="delete-server-btn">Supprimer le serveur</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/edit-server.js"></script>
+</body>
+</html>

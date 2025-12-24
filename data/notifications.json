@@ -1,0 +1,47 @@
+[
+  {
+    "id": "notif-1",
+    "userId": "sample-user",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis Chrome",
+    "timestamp": "2025-12-24T10:43:38.128Z",
+    "read": false
+  },
+  {
+    "id": "notif-2",
+    "userId": "sample-user",
+    "type": "server_approved",
+    "title": "Serveur approuvé",
+    "message": "Votre serveur \"Minecraft Fun\" a été approuvé",
+    "timestamp": "2025-12-23T12:43:38.128Z",
+    "read": false
+  },
+  {
+    "id": "notif-3",
+    "userId": "sample-user",
+    "type": "security_alert",
+    "title": "Alerte de sécurité",
+    "message": "Connexion inhabituelle détectée depuis un nouvel appareil",
+    "timestamp": "2025-12-21T12:43:38.128Z",
+    "read": true
+  },
+  {
+    "id": "notif-1766587886618",
+    "userId": "698982039105437787",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2025-12-24T14:51:26.618Z",
+    "read": false
+  },
+  {
+    "id": "notif-1766588269544",
+    "userId": "698982039105437787",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2025-12-24T14:57:49.544Z",
+    "read": false
+  }
+]

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - GameHub Repertoire</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <nav>
+        <a href="landing.html">Accueil</a>
+        <a href="index.html">Explorer</a>
+        <a href="profile.html">Mon Compte</a>
+        <a href="#" id="logout-link">Déconnexion</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Support</h2>
+    <form id="ticket-form">
+      <div>
+        <label for="subject">Sujet:</label>
+        <input type="text" id="subject" required>
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" required></textarea>
+      </div>
+      <button type="submit" class="btn">Envoyer</button>
+    </form>
+    <h3>Mes tickets</h3>
+    <div id="ticket-list">
+      <!-- Tickets will be loaded here -->
+    </div>
+  </main>
+
+  <script src="js/tickets.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Sécurité - GameHub Repertoire</title>
+  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.js">
+</head>
+<body>
+  <header class="profile-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <nav>
+        <div class="nav-left">
+          <a href="landing.html">Accueil</a>
+          <a href="index.html">Explorer</a>
+        </div>
+        <div class="nav-right">
+          <a href="#" id="logout-link">Déconnexion</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="profile-main">
+    <div class="profile-container">
+      <!-- Carte principale -->
+      <div class="main-profile-card">
+        <div class="profile-header-section">
+          <div class="avatar-section">
+            <img id="avatar" src="" alt="Avatar" class="profile-avatar">
+            <div class="status-indicator online"></div>
+          </div>
+          <div class="user-info">
+            <h1 id="display-name" class="user-name"></h1>
+            <p class="user-handle">@<span id="username"></span>#<span id="discriminator"></span></p>
+            <div class="user-badges">
+              <span class="badge status active">
+                <i data-lucide="check-circle"></i>
+                Service Actif
+              </span>
+              <span class="badge security">
+                <i data-lucide="shield"></i>
+                Compte Protégé
+              </span>
+            </div>
+            <button class="btn-link" id="toggle-details">Afficher les détails</button>
+            <div id="user-details" class="user-details" style="display: none;">
+              <p class="user-detail">
+                <i data-lucide="mail"></i>
+                <span id="email-masked"></span>
+                <button class="btn-icon" id="show-email" title="Afficher l'email complet">
+                  <i data-lucide="eye"></i>
+                </button>
+              </p>
+              <p class="user-detail">
+                <i data-lucide="hash"></i>
+                <span id="discord-id-masked"></span>
+                <button class="btn-icon" id="show-discord-id" title="Afficher le Discord ID complet">
+                  <i data-lucide="eye"></i>
+                </button>
+              </p>
+              <p class="user-detail">
+                <i data-lucide="clock"></i>
+                Dernière connexion: <span id="last-login"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="banner-container" class="banner-container" style="display: none;">
+          <img id="banner" src="" alt="Banner" class="profile-banner">
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="quick-actions">
+          <a href="submit.html" class="quick-action-btn">
+            <i data-lucide="plus"></i>
+            Soumettre un serveur
+          </a>
+          <a href="tickets.html" class="quick-action-btn">
+            <i data-lucide="message-square"></i>
+            Créer un ticket
+          </a>
+          <button class="quick-action-btn" id="quick-settings">
+            <i data-lucide="settings"></i>
+            Paramètres rapides
+          </button>
+        </div>
+
+        <!-- Sécurité du compte -->
+        <div class="security-section">
+          <h3>
+            <i data-lucide="shield"></i>
+            Sécurité du compte
+          </h3>
+          <div class="security-info">
+            <div class="security-item">
+              <i data-lucide="smartphone"></i>
+              <span>2FA: <span id="2fa-status">Désactivé</span></span>
+            </div>
+            <div class="security-item">
+              <i data-lucide="monitor"></i>
+              <span>Derniers appareils connectés</span>
+              <button class="btn-link" id="view-devices">Voir</button>
+            </div>
+            <div class="security-item">
+              <i data-lucide="history"></i>
+              <span>Historique de connexions</span>
+              <button class="btn-link" id="view-history">Voir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sections secondaires -->
+      <div class="profile-grid">
+        <!-- Notifications -->
+        <div class="profile-section">
+          <div class="section-header">
+            <h2>
+              <i data-lucide="bell"></i>
+              Notifications Récentes
+            </h2>
+            <button class="btn-link" id="mark-all-read">Tout marquer comme lu</button>
+          </div>
+          <div class="notifications-list" id="notifications-list">
+            <!-- Notifications will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Activité récente -->
+        <div class="profile-section">
+          <h2>
+            <i data-lucide="activity"></i>
+            Activité Récente
+          </h2>
+          <div class="activity-list" id="activity-list">
+            <!-- Activities will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Statistiques -->
+        <div class="profile-section">
+          <h2>
+            <i data-lucide="bar-chart-3"></i>
+            Statistiques
+          </h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i data-lucide="server"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="servers-count">0</span>
+                <span class="stat-label">Serveurs soumis</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i data-lucide="ticket"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="tickets-count">0</span>
+                <span class="stat-label">Tickets ouverts</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i data-lucide="user-check"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="user-role">user</span>
+                <span class="stat-label">Rôle</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i data-lucide="calendar"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="join-date">2023</span>
+                <span class="stat-label">Membre depuis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Paramètres du Compte -->
+  <div id="settings-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Paramètres du Compte</h2>
+        <button class="modal-close" id="close-settings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="settings-form">
+          <div class="form-group">
+            <label for="settings-display-name">Nom d'Affichage</label>
+            <input type="text" id="settings-display-name" name="displayName">
+          </div>
+          <div class="form-group">
+            <label for="settings-email">Email</label>
+            <input type="email" id="settings-email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="settings-notifications">Notifications</label>
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" id="email-notifications" name="emailNotifications"> Recevoir des notifications par email
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Sécurité</label>
+            <button type="button" class="btn-secondary" id="change-password-btn">Changer le mot de passe</button>
+            <button type="button" class="btn-secondary" id="enable-2fa-btn">Activer 2FA</button>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Sauvegarder</button>
+            <button type="button" class="btn-secondary" id="cancel-settings">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/profile.js"></script>
+  <script>
+    // Initialiser les icônes Lucide
+    lucide.createIcons();
+  </script>
+</body>
+</html>
