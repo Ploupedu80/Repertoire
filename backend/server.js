@@ -30,7 +30,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-  secret: 'gamehub-secret-key', // In production, use a strong secret
+  secret: process.env.SESSION_SECRET || 'gamehub-secret-key',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set to true if using HTTPS

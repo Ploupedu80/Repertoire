@@ -1,0 +1,24 @@
+{
+  "name": "gamehub-repertoire",
+  "version": "1.0.0",
+  "description": "Répertoire Discord français avec système de rôles",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm install && npm start",
+    "dev": "cd backend && npm run dev"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ploupedu80/Repertoire.git"
+  },
+  "keywords": [
+    "discord",
+    "repertoire",
+    "serveurs"
+  ],
+  "author": "Ploupedu80",
+  "license": "MIT"
+}
