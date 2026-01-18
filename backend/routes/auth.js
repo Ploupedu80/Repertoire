@@ -6,12 +6,16 @@ const { readJSON, writeJSON } = require('../utils/jsonUtils');
 const router = express.Router();
 
 // Configure Discord Strategy with proper OAuth2Strategy configuration
-passport.use(new Strategy({
-  clientId: process.env.DISCORD_CLIENT_ID || '1428815214677065858',
-  clientSecret: process.env.DISCORD_CLIENT_SECRET || 'mi-QAgi9mg8BgnMBmQaQM28EO_LhwOfn',
-  callbackUrl: process.env.DISCORD_CALLBACK_URL || 'http://localhost:3000/api/auth/discord/callback',
-  scope: ['identify', 'email']
-}, (accessToken, refreshToken, profile, done) => {
+// Only initialize if Discord credentials are configured
+if (process.env.DISCORD_CLIENT_ID && 
+    process.env.DISCORD_CLIENT_SECRET && 
+    !process.env.DISCORD_CLIENT_ID.includes('your_discord')) {
+  passport.use(new Strategy({
+    clientId: process.env.DISCORD_CLIENT_ID,
+    clientSecret: process.env.DISCORD_CLIENT_SECRET,
+    callbackUrl: process.env.DISCORD_CALLBACK_URL || 'http://localhost:3000/api/auth/discord/callback',
+    scope: ['identify', 'email']
+  }, (accessToken, refreshToken, profile, done) => {
   // Find or create user
   const users = readJSON('users.json');
   let user = users.find(u => u.discordId === profile.id);
@@ -73,7 +77,8 @@ passport.use(new Strategy({
   }
 
   return done(null, user);
-}));
+  }));
+}
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -85,12 +90,16 @@ passport.deserializeUser((id, done) => {
   done(null, user);
 });
 
-// Discord auth routes
-router.get('/discord', passport.authenticate('discord'));
+// Discord auth routes - only enable if Discord is configured
+if (process.env.DISCORD_CLIENT_ID && 
+    process.env.DISCORD_CLIENT_SECRET && 
+    !process.env.DISCORD_CLIENT_ID.includes('your_discord')) {
+  router.get('/discord', passport.authenticate('discord'));
 
-router.get('/discord/callback', passport.authenticate('discord', { failureRedirect: '/login.html' }), (req, res) => {
-  res.redirect('/profile.html');
-});
+  router.get('/discord/callback', passport.authenticate('discord', { failureRedirect: '/login.html' }), (req, res) => {
+    res.redirect('/profile.html');
+  });
+}
 
 // Logout
 router.post('/logout', (req, res) => {
