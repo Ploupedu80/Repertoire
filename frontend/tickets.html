@@ -4,7 +4,488 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Support - GameHub Repertoire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .support-container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+
+    .support-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .support-header h1 {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .support-header p {
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+
+    .create-ticket-section {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .create-ticket-section h2 {
+      color: #1e293b;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.8rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+      color: #1e293b;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .tickets-section h2 {
+      color: #1e293b;
+      margin: 2rem 0 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .tickets-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .ticket-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid #e2e8f0;
+      border-left: 4px solid #2563eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .ticket-card:hover {
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+      transform: translateY(-2px);
+      border-color: #2563eb;
+    }
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .ticket-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .ticket-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .ticket-badge {
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-status {
+      background: #dbeafe;
+      color: #0369a1;
+    }
+
+    .badge-status.open {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-status.in-progress {
+      background: #dbeafe;
+      color: #0369a1;
+    }
+
+    .badge-status.resolved {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-status.closed {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .badge-priority {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .badge-priority.low {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .badge-priority.normal {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .badge-priority.high {
+      background: #fed7aa;
+      color: #92400e;
+    }
+
+    .badge-priority.urgent {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .ticket-meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .ticket-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ticket-preview {
+      color: #64748b;
+      margin: 0;
+      line-height: 1.5;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .ticket-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      overflow: auto;
+    }
+
+    .ticket-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ticket-modal-content {
+      background: white;
+      border-radius: 16px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      color: #1e293b;
+    }
+
+    .ticket-detail-header {
+      padding: 2rem 2rem 1rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .ticket-detail-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0 0 1rem 0;
+    }
+
+    .ticket-detail-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .ticket-detail-meta-item {
+      color: #64748b;
+    }
+
+    .ticket-detail-meta-item strong {
+      color: #1e293b;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .ticket-detail-body {
+      padding: 2rem;
+    }
+
+    .ticket-message {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      color: #1e293b;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .responses-section h3 {
+      color: #1e293b;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .response-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .response-item.admin {
+      background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+      border-color: #0369a1;
+    }
+
+    .response-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .response-author {
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .response-admin-badge {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .response-date {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .response-message {
+      color: #1e293b;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .add-response-section {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e2e8f0;
+    }
+
+    .add-response-section h3 {
+      color: #1e293b;
+      margin: 0 0 1rem 0;
+    }
+
+    .response-textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: #1e293b;
+      min-height: 100px;
+      resize: vertical;
+      transition: all 0.3s ease;
+    }
+
+    .response-textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .response-btn {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .response-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #64748b;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    .status-indicator.open {
+      background: #eab308;
+    }
+
+    .status-indicator.in-progress {
+      background: #3b82f6;
+    }
+
+    .status-indicator.resolved {
+      background: #10b981;
+    }
+
+    .status-indicator.closed {
+      background: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ticket-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .ticket-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -14,32 +495,125 @@
         <h1>GameHub Repertoire</h1>
       </div>
       <nav>
-        <a href="landing.html">Accueil</a>
-        <a href="index.html">Explorer</a>
-        <a href="profile.html">Mon Compte</a>
-        <a href="#" id="logout-link">Déconnexion</a>
+        <div class="nav-left">
+          <a href="landing.html">Accueil</a>
+          <a href="index.html">Explorer</a>
+        </div>
+        <div class="nav-right">
+          <a href="profile.html">Profil</a>
+          <a href="#" id="logout-link">Déconnexion</a>
+        </div>
       </nav>
     </div>
   </header>
 
   <main>
-    <h2>Support</h2>
-    <form id="ticket-form">
-      <div>
-        <label for="subject">Sujet:</label>
-        <input type="text" id="subject" required>
+    <div class="support-container">
+      <div class="support-header">
+        <h1>🎫 Centre de Support</h1>
+        <p>Besoin d'aide? Créez un ticket et notre équipe vous assistera rapidement</p>
       </div>
-      <div>
-        <label for="message">Message:</label>
-        <textarea id="message" required></textarea>
+
+      <!-- Create Ticket Section -->
+      <div class="create-ticket-section">
+        <h2>Créer un nouveau ticket</h2>
+        <form id="ticket-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="subject">Sujet *</label>
+              <input type="text" id="subject" placeholder="Résumez votre problème..." required>
+            </div>
+            <div class="form-group">
+              <label for="category">Catégorie *</label>
+              <select id="category" required>
+                <option value="general">Général</option>
+                <option value="bug">Signaler un bug</option>
+                <option value="feature">Suggestion</option>
+                <option value="account">Compte</option>
+                <option value="payment">Paiement</option>
+                <option value="other">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="priority">Priorité</label>
+              <select id="priority">
+                <option value="low">Basse</option>
+                <option value="normal" selected>Normal</option>
+                <option value="high">Haute</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="message">Description détaillée *</label>
+              <textarea id="message" placeholder="Décrivez votre problème en détail..." required></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Envoyer le ticket</button>
+        </form>
       </div>
-      <button type="submit" class="btn">Envoyer</button>
-    </form>
-    <h3>Mes tickets</h3>
-    <div id="ticket-list">
-      <!-- Tickets will be loaded here -->
+
+      <!-- Tickets List Section -->
+      <div class="tickets-section">
+        <h2>Mes tickets</h2>
+        <div id="tickets-container" class="tickets-grid">
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <p>Chargement de vos tickets...</p>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
+
+  <!-- Ticket Detail Modal -->
+  <div id="ticket-modal" class="ticket-modal">
+    <div class="ticket-modal-content">
+      <button class="modal-close" onclick="closeTicketModal()">&times;</button>
+      <div class="ticket-detail-header">
+        <h2 class="ticket-detail-title" id="modal-title"></h2>
+        <div class="ticket-detail-meta">
+          <div class="ticket-detail-meta-item">
+            <strong>ID</strong>
+            <span id="modal-id"></span>
+          </div>
+          <div class="ticket-detail-meta-item">
+            <strong>Créé le</strong>
+            <span id="modal-created"></span>
+          </div>
+          <div class="ticket-detail-meta-item">
+            <strong>Statut</strong>
+            <span id="modal-status"></span>
+          </div>
+          <div class="ticket-detail-meta-item">
+            <strong>Priorité</strong>
+            <span id="modal-priority"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticket-detail-body">
+        <div class="ticket-message" id="modal-message"></div>
+
+        <div class="responses-section" id="responses-section" style="display: none;">
+          <h3>Réponses</h3>
+          <div id="responses-list"></div>
+        </div>
+
+        <div class="add-response-section">
+          <h3>Ajouter une réponse</h3>
+          <textarea class="response-textarea" id="response-message" placeholder="Votre message..."></textarea>
+          <button class="response-btn" onclick="addResponse()">Envoyer la réponse</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/tickets.js"></script>
 </body>

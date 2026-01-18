@@ -27,21 +27,93 @@
     "read": true
   },
   {
-    "id": "notif-1766587886618",
-    "userId": "698982039105437787",
-    "type": "login",
-    "title": "Connexion réussie",
-    "message": "Connexion réussie depuis le navigateur",
-    "timestamp": "2025-12-24T14:51:26.618Z",
+    "id": "notif-1766871317356-qluamaeez",
+    "userId": "4",
+    "type": "ticket_response",
+    "title": "💬 Nouvelle réponse",
+    "message": "L'équipe de support a répondu à votre ticket: \"Problème d'inscription\"",
+    "timestamp": "2025-12-27T21:35:17.356Z",
     "read": false
   },
   {
-    "id": "notif-1766588269544",
+    "id": "notif-1766872688431-dkhrxj49m",
+    "userId": "4",
+    "type": "ticket_deleted",
+    "title": "🗑️ Ticket supprimé",
+    "message": "Votre ticket \"Problème d'inscription\" a été supprimé par un modérateur",
+    "timestamp": "2025-12-27T21:58:08.431Z",
+    "read": false
+  },
+  {
+    "id": "notif-1766949086850",
+    "userId": "1114966635002994820",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2025-12-28T19:11:26.850Z",
+    "read": false
+  },
+  {
+    "id": "notif-1766949577545",
+    "userId": "1114966635002994820",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2025-12-28T19:19:37.545Z",
+    "read": false
+  },
+  {
+    "id": "notif-1766949704328",
+    "userId": "1114966635002994820",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2025-12-28T19:21:44.328Z",
+    "read": false
+  },
+  {
+    "id": "notif-1768660610115-kpfh9anwx",
+    "userId": "4",
+    "type": "server_suspended",
+    "title": "⛔ Serveur suspendu",
+    "message": "Votre serveur \"Gaming Community\" a été suspendu.\nRaison: tesy",
+    "timestamp": "2026-01-17T14:36:50.116Z",
+    "read": false
+  },
+  {
+    "id": "notif-1768736209347",
     "userId": "698982039105437787",
     "type": "login",
     "title": "Connexion réussie",
     "message": "Connexion réussie depuis le navigateur",
-    "timestamp": "2025-12-24T14:57:49.544Z",
-    "read": false
+    "timestamp": "2026-01-18T11:36:49.347Z",
+    "read": true
+  },
+  {
+    "id": "notif-1768736534179",
+    "userId": "698982039105437787",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2026-01-18T11:42:14.179Z",
+    "read": true
+  },
+  {
+    "id": "notif-1768736815296",
+    "userId": "698982039105437787",
+    "type": "login",
+    "title": "Connexion réussie",
+    "message": "Connexion réussie depuis le navigateur",
+    "timestamp": "2026-01-18T11:46:55.296Z",
+    "read": true
+  },
+  {
+    "id": "notif-1768736859976-2qo7dg8ad",
+    "userId": "698982039105437787",
+    "type": "ticket_open",
+    "title": "🎫 Ticket créé",
+    "message": "Votre ticket \"test\" a été créé avec succès",
+    "timestamp": "2026-01-18T11:47:39.976Z",
+    "read": true
   }
 ]

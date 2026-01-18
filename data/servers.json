@@ -6,50 +6,45 @@
     "inviteLink": "https://discord.gg/gaming",
     "icon": "https://example.com/icon1.png",
     "banner": "https://example.com/banner1.png",
-    "description": "A great gaming community server.",
+    "description": "A great community server.",
     "memberCount": 1500,
     "activityLevel": "High",
     "serverType": "Gaming",
+    "category": "community",
+    "language": "fr",
+    "region": "Europe",
     "tags": [
       "gaming",
       "community"
     ],
     "status": "approved",
-    "suspended": false
+    "suspended": false,
+    "averageRating": 1,
+    "totalRatings": 1,
+    "totalReviews": 0
   },
   {
-    "id": "2",
-    "submittedBy": "4",
-    "name": "Dev Hub",
-    "inviteLink": "https://discord.gg/dev",
-    "icon": "https://example.com/icon2.png",
-    "banner": "https://example.com/banner2.png",
-    "description": "For developers to share code and ideas.",
-    "memberCount": 500,
+    "id": "a63c1db7-902d-4cd8-a029-e8dc47bc7481",
+    "submittedBy": "698982039105437787",
+    "name": "Street football",
+    "inviteLink": "https://discord.gg/MVD9ha8w",
+    "icon": "/asset/uploads/icon-1768660898941-804366972.png",
+    "banner": "/asset/uploads/banner-1768660898947-364221631.png",
+    "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "memberCount": 1,
     "activityLevel": "Medium",
     "serverType": "Dev",
-    "tags": [
-      "development",
-      "coding"
-    ],
-    "status": "approved",
-    "suspended": false
-  },
-  {
-    "id": "cb18e0ef-71b9-4392-9184-afebc293aceb",
-    "submittedBy": "698982039105437787",
-    "name": "RSG Support",
-    "inviteLink": "http://localhost:3000/submit.html",
-    "icon": "http://localhost:3000/submit.html",
-    "banner": "http://localhost:3000/submit.html",
-    "description": "test",
-    "memberCount": 100,
-    "activityLevel": "Low",
-    "serverType": "eSport",
+    "category": "anime",
+    "language": "fr",
+    "region": "Europe",
     "tags": [
       "test"
     ],
-    "status": "pending",
-    "suspended": false
+    "status": "approved",
+    "suspended": false,
+    "averageRating": 5,
+    "totalRatings": 1,
+    "totalReviews": 0,
+    "createdAt": "2026-01-17T14:41:39.057Z"
   }
 ]

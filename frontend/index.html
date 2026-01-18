@@ -4,90 +4,154 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GameHub Repertoire</title>
+  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="js/theme-manager.js"></script>
 </head>
 <body>
   <header>
-    <div class="header-content">
+    <nav>
       <div class="logo-container">
         <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
         <h1>GameHub Repertoire</h1>
       </div>
-      <nav>
-        <div class="nav-left">
-          <a href="#" id="home-link" class="active">Accueil</a>
-          <a href="#" id="submit-link">Soumettre un serveur</a>
+      <div class="nav-menu">
+        <a href="landing.html" id="home-link" class="nav-link active">Accueil</a>
+        <a href="#" id="explore-link" class="nav-link">Explorer</a>
+        <a href="submit.html" id="add-server-link" class="nav-link">Ajouter serveur</a>
+        <a href="top-servers.html" id="ranking-link" class="nav-link">Top serveurs</a>
+      </div>
+      <div class="profile-dropdown" id="profile-dropdown" style="display:none;">
+        <button id="theme-toggle" class="theme-toggle" title="Changer le thème">🌙</button>
+        <button id="notifications-btn" class="notifications-btn" title="Notifications">
+          🔔
+          <span id="notifications-count" class="notifications-count" style="display:none;">0</span>
+        </button>
+        <img id="nav-avatar" src="" alt="Profile" class="nav-avatar">
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="profile.html">Mon compte</a>
+          <a href="tickets.html">Support</a>
+          <a href="#" id="logout-link" class="logout-option">Déconnexion</a>
         </div>
-        <div class="nav-right">
-          <a href="#" id="profile-link" style="display:none;">Mon Compte</a>
-          <a href="#" id="support-link" style="display:none;">Support</a>
-          <a href="#" id="admin-link" style="display:none;">Admin</a>
-          <a href="#" id="login-link" class="btn btn-primary">Connexion</a>
-          <a href="#" id="logout-link" style="display:none;">Déconnexion</a>
-        </div>
-      </nav>
-    </div>
+      </div>
+      <a href="login.html" id="login-link" class="btn btn-primary login-btn">Connexion</a>
+    </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <h2>Découvrez les meilleurs serveurs Discord gaming</h2>
-      <p class="hero-subtitle">Des communautés actives, vérifiées et classées par activité</p>
-    </section>
-
-    <div id="announcements-banner" style="display:none;">
-      <!-- Announcements will be shown here -->
-    </div>
-    <div class="search-section">
-      <div class="search-bar fade-in-up">
-        <input type="text" id="search" placeholder="Rechercher un serveur : Minecraft, RP, Dev…">
-      </div>
-      <div class="filters-container fade-in-up">
-        <button id="filter-toggle" class="filter-toggle">
-          <span class="filter-icon">🔍</span>
-          Filtres
-          <span class="filter-arrow">▼</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Filter Modal -->
-    <div id="filter-modal" class="modal-overlay" style="display: none;">
-      <div class="modal-content filter-modal-content">
-        <div class="modal-header">
-          <h3>Filtrer les serveurs</h3>
-          <button class="modal-close" id="close-filter-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="filter-group">
-            <label for="type-filter">Type de serveur</label>
-            <select id="type-filter" class="filter-select">
-              <option value="">Tous les types</option>
-              <option value="Gaming">🎮 Gaming</option>
-              <option value="Community">👥 Community</option>
-              <option value="RP">🎭 RP</option>
-              <option value="Dev">💻 Dev</option>
-              <option value="eSport">🏆 eSport</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="activity-filter">Niveau d'activité</label>
-            <select id="activity-filter" class="filter-select">
-              <option value="">Toutes les activités</option>
-              <option value="Low">📉 Faible</option>
-              <option value="Medium">📊 Moyenne</option>
-              <option value="High">📈 Élevée</option>
-            </select>
-          </div>
-          <div class="filter-actions">
-            <button id="reset-filters" class="btn btn-secondary">Réinitialiser</button>
-            <button id="apply-filters" class="btn btn-primary">Appliquer les filtres</button>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+          <div class="hero-header-wrap">
+            <h1 class="hero-title">Découvrez les meilleurs serveurs Discord francophones</h1>
+            <p class="hero-subtitle">La plateforme de référence pour trouver et partager les communautés les plus actives et vérifiées.</p>
           </div>
         </div>
+      </section>
+
+      <div id="announcements-banner" style="display:none;">
+        <!-- Announcements will be shown here -->
       </div>
-    </div>
-    <div id="server-list" class="server-grid">
-      <!-- Server cards will be loaded here -->
+      <div class="search-section">
+        <div class="search-bar fade-in-up">
+          <input type="text" id="search" placeholder="Rechercher un serveur : Minecraft, RP, Dev…">
+        </div>
+        <div class="filters-container fade-in-up">
+          <button id="filter-toggle" class="filter-toggle">
+            <span class="filter-icon">🔍</span>
+            Filtres
+            <span class="filter-arrow">▼</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Modal -->
+      <div id="filter-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content filter-modal-content">
+          <div class="modal-header">
+            <h3>Filtrer les serveurs</h3>
+            <button class="modal-close" id="close-filter-modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="filter-group">
+              <label for="category-filter">Catégorie</label>
+              <select id="category-filter" class="filter-select">
+                <option value="">Toutes les catégories</option>
+                <!-- Categories will be loaded dynamically -->
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="language-filter">Langue</label>
+              <select id="language-filter" class="filter-select">
+                <option value="">Toutes les langues</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="en">🇺🇸 Anglais</option>
+                <option value="es">🇪🇸 Espagnol</option>
+                <option value="de">🇩🇪 Allemand</option>
+                <option value="it">🇮🇹 Italien</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="region-filter">Région</label>
+              <select id="region-filter" class="filter-select">
+                <option value="">Toutes les régions</option>
+                <option value="Europe">🇪🇺 Europe</option>
+                <option value="North America">🇺🇸 Amérique du Nord</option>
+                <option value="South America">🇧🇷 Amérique du Sud</option>
+                <option value="Asia">🇯🇵 Asie</option>
+                <option value="Africa">🇿🇦 Afrique</option>
+                <option value="Oceania">🇦🇺 Océanie</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="members-filter">Nombre de membres</label>
+              <select id="members-filter" class="filter-select">
+                <option value="">Tous</option>
+                <option value="0-100">0-100</option>
+                <option value="100-500">100-500</option>
+                <option value="500-1000">500-1k</option>
+                <option value="1000-5000">1k-5k</option>
+                <option value="5000+">5k+</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="sort-filter">Trier par</label>
+              <select id="sort-filter" class="filter-select">
+                <option value="">Par défaut</option>
+                <option value="rating">⭐ Note</option>
+                <option value="members">👥 Membres</option>
+                <option value="newest">🆕 Plus récent</option>
+              </select>
+            </div>
+            <div class="filter-actions">
+              <button id="reset-filters" class="btn btn-secondary">Réinitialiser</button>
+              <button id="apply-filters" class="btn btn-primary">Appliquer les filtres</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="server-list" class="server-grid">
+        <!-- Server cards will be loaded here -->
+      </div>
+
+      <!-- Appeal Modal -->
+      <div id="appeal-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <span class="close-modal" id="close-appeal-modal">&times;</span>
+          <h2>📢 Contester la suspension</h2>
+          <form id="appeal-form">
+            <div class="form-group">
+              <label for="appeal-explanation">Explication:</label>
+              <textarea id="appeal-explanation" name="explanation" placeholder="Expliquez pourquoi ce serveur ne devrait pas être suspendu..." rows="6" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Soumettre l'appel</button>
+          </form>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -95,6 +159,7 @@
     <div class="footer-content">
       <p>&copy; 2025 GameHub Repertoire. Tous droits réservés.</p>
       <div class="footer-links">
+        <a href="legal-mentions.html">Mentions Légales</a>
         <a href="privacy-policy.html">Politique de confidentialité</a>
         <a href="terms-of-service.html">Conditions d'utilisation</a>
         <a href="contact.html">Contact</a>
@@ -102,6 +167,77 @@
     </div>
   </footer>
 
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-banner-content">
+      <div class="cookie-banner-text">
+        <h3>🍪 Consentement aux Cookies</h3>
+        <p>Nous utilisons des cookies pour améliorer votre expérience. Les cookies essentiels sont toujours actifs. 
+        Vous pouvez personnaliser votre consentement pour les cookies analytiques et marketing.</p>
+        <p><a href="privacy-policy.html">En savoir plus sur notre politique de confidentialité</a></p>
+      </div>
+      <div class="cookie-banner-buttons">
+        <button id="reject-cookies" class="cookie-btn cookie-btn-secondary">Refuser</button>
+        <button id="customize-cookies" class="cookie-btn cookie-btn-secondary">Personnaliser</button>
+        <button id="accept-all-cookies" class="cookie-btn cookie-btn-primary">Accepter tout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Preferences Modal -->
+  <div id="cookie-modal" class="cookie-modal">
+    <div class="cookie-modal-content">
+      <div class="cookie-modal-header">
+        <h2>Préférences de Cookies</h2>
+        <button id="close-cookie-modal" class="close-btn">&times;</button>
+      </div>
+      
+      <div class="cookie-modal-body">
+        <div class="cookie-preference">
+          <div class="preference-header">
+            <h3>Cookies Essentiels</h3>
+            <span class="badge-essential">Obligatoire</span>
+          </div>
+          <p>Les cookies essentiels permettent au site de fonctionner correctement. Ils permettent l'authentification et la gestion de la session.</p>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-essential" checked disabled>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="cookie-preference">
+          <div class="preference-header">
+            <h3>Cookies Analytiques</h3>
+            <span class="badge-analytics">Optionnel</span>
+          </div>
+          <p>Ces cookies nous aident à comprendre comment vous utilisez le site et à améliorer votre expérience. Ils collectent des données anonymes sur le comportement de visite.</p>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="cookie-preference">
+          <div class="preference-header">
+            <h3>Cookies Marketing</h3>
+            <span class="badge-marketing">Optionnel</span>
+          </div>
+          <p>Ces cookies permettent de personnaliser vos annonces en fonction de vos intérêts et d'évaluer l'efficacité des campagnes marketing.</p>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-modal-footer">
+        <button id="save-preferences" class="cookie-btn cookie-btn-primary">Enregistrer les préférences</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/image-fallback.js"></script>
 </body>
 </html>

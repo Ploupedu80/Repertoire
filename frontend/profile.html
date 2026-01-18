@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Sécurité - GameHub Repertoire</title>
+  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1">
-  <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.js">
+  <link rel="stylesheet" href="css/theme.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="js/theme-manager.js"></script>
 </head>
 <body>
   <header class="profile-header">
@@ -20,6 +24,7 @@
           <a href="index.html">Explorer</a>
         </div>
         <div class="nav-right">
+          <button id="theme-toggle" class="theme-toggle" title="Changer le thème" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem;">🌙</button>
           <a href="#" id="logout-link">Déconnexion</a>
         </div>
       </nav>
@@ -46,6 +51,10 @@
               <span class="badge security">
                 <i data-lucide="shield"></i>
                 Compte Protégé
+              </span>
+              <span id="referent-badge" class="badge referent" style="display: none;">
+                <i data-lucide="crown"></i>
+                Référent
               </span>
             </div>
             <button class="btn-link" id="toggle-details">Afficher les détails</button>
@@ -91,6 +100,48 @@
           </button>
         </div>
 
+        <!-- Boutons de Modération (selon le rôle) -->
+        <div id="moderation-buttons" style="display: none; margin: 2rem 0;">
+          <h3 style="color: #2563eb; margin-bottom: 1rem;">⚙️ Outils de Modération</h3>
+          <div id="role-specific-buttons" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <!-- Les boutons seront ajoutés par JavaScript selon le rôle -->
+          </div>
+        </div>
+
+        <!-- Statistiques et Favoris -->
+        <div class="profile-stats-section" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); border: 2px solid #00d4ff; border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+          <h3 style="color: #00d4ff; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="bar-chart-2"></i>
+            Mes Statistiques
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid #00d4ff; padding: 1rem; border-radius: 6px;">
+              <p style="color: #b0b0b0; margin: 0; font-size: 0.9rem;">Serveurs Soumis</p>
+              <p style="color: #00d4ff; margin: 0.5rem 0 0 0; font-size: 1.5rem; font-weight: 700;" id="stat-servers-submitted">0</p>
+            </div>
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid #00d4ff; padding: 1rem; border-radius: 6px;">
+              <p style="color: #b0b0b0; margin: 0; font-size: 0.9rem;">Avis Donnés</p>
+              <p style="color: #00d4ff; margin: 0.5rem 0 0 0; font-size: 1.5rem; font-weight: 700;" id="stat-reviews-given">0</p>
+            </div>
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid #00d4ff; padding: 1rem; border-radius: 6px;">
+              <p style="color: #b0b0b0; margin: 0; font-size: 0.9rem;">Serveurs Favoris</p>
+              <p style="color: #00d4ff; margin: 0.5rem 0 0 0; font-size: 1.5rem; font-weight: 700;" id="stat-favorites">0</p>
+            </div>
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid #00d4ff; padding: 1rem; border-radius: 6px;">
+              <p style="color: #b0b0b0; margin: 0; font-size: 0.9rem;">Tickets Ouverts</p>
+              <p style="color: #00d4ff; margin: 0.5rem 0 0 0; font-size: 1.5rem; font-weight: 700;" id="stat-open-tickets">0</p>
+            </div>
+          </div>
+
+          <h3 style="color: #00d4ff; margin: 1.5rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="heart"></i>
+            Mes Serveurs Favoris
+          </h3>
+          <div id="favorites-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+            <p style="color: #b0b0b0; grid-column: 1 / -1;">Chargement des favoris...</p>
+          </div>
+        </div>
+
         <!-- Sécurité du compte -->
         <div class="security-section">
           <h3>
@@ -134,60 +185,73 @@
 
         <!-- Activité récente -->
         <div class="profile-section">
-          <h2>
-            <i data-lucide="activity"></i>
-            Activité Récente
-          </h2>
+          <div class="section-header">
+            <h2>
+              <i data-lucide="ticket"></i>
+              Tickets Récents
+            </h2>
+            <a href="tickets.html" class="btn-link">Voir tous les tickets</a>
+          </div>
           <div class="activity-list" id="activity-list">
             <!-- Activities will be loaded here -->
           </div>
         </div>
 
-        <!-- Statistiques -->
-        <div class="profile-section">
-          <h2>
-            <i data-lucide="bar-chart-3"></i>
-            Statistiques
-          </h2>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="server"></i>
-              </div>
-              <div class="stat-info">
-                <span class="stat-number" id="servers-count">0</span>
-                <span class="stat-label">Serveurs soumis</span>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="ticket"></i>
-              </div>
-              <div class="stat-info">
-                <span class="stat-number" id="tickets-count">0</span>
-                <span class="stat-label">Tickets ouverts</span>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="user-check"></i>
-              </div>
-              <div class="stat-info">
-                <span class="stat-number" id="user-role">user</span>
-                <span class="stat-label">Rôle</span>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="calendar"></i>
-              </div>
-              <div class="stat-info">
-                <span class="stat-number" id="join-date">2023</span>
-                <span class="stat-label">Membre depuis</span>
-              </div>
-            </div>
+        <!-- Mes Serveurs (pour les référents) -->
+        <div class="profile-section" id="servers-section" style="display: none;">
+          <div class="section-header">
+            <h2>
+              <i data-lucide="server"></i>
+              Mes Serveurs Actifs
+            </h2>
+            <a href="submit.html" class="btn-link">+ Ajouter un serveur</a>
+          </div>
+          <div class="servers-list" id="active-servers-list">
+            <!-- Active servers will be loaded here -->
           </div>
         </div>
+
+        <!-- Serveurs Suspendus -->
+        <div class="profile-section" id="suspended-servers-section" style="display: none;">
+          <div class="section-header">
+            <h2>
+              <i data-lucide="alert-circle"></i>
+              Serveurs Suspendus
+            </h2>
+          </div>
+          <div class="servers-list" id="suspended-servers-list">
+            <!-- Suspended servers will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Serveurs en Attente -->
+        <div class="profile-section" id="pending-servers-section" style="display: none;">
+          <div class="section-header">
+            <h2>
+              <i data-lucide="hourglass"></i>
+              Serveurs en Attente d'Approbation
+            </h2>
+          </div>
+          <div class="servers-list" id="pending-servers-list">
+            <!-- Pending servers will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Sanctions -->
+        <div class="profile-section" id="sanctions-section">
+          <div class="section-header">
+            <h2>
+              <i data-lucide="alert-triangle"></i>
+              Mes Sanctions
+            </h2>
+          </div>
+          <div class="sanctions-list" id="sanctions-list">
+            <!-- Sanctions will be loaded here -->
+          </div>
+        </div>
+
+        </div>
+
       </div>
     </div>
   </main>

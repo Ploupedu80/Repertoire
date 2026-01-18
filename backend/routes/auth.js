@@ -1,14 +1,14 @@
 const express = require('express');
 const passport = require('passport');
-const DiscordStrategy = require('passport-discord-auth').Strategy;
+const Strategy = require('passport-discord-auth').Strategy;
 const { readJSON, writeJSON } = require('../utils/jsonUtils');
 
 const router = express.Router();
 
-// Configure Discord Strategy
-passport.use(new DiscordStrategy({
-  clientId: process.env.DISCORD_CLIENT_ID,
-  clientSecret: process.env.DISCORD_CLIENT_SECRET,
+// Configure Discord Strategy with proper OAuth2Strategy configuration
+passport.use(new Strategy({
+  clientId: process.env.DISCORD_CLIENT_ID || '1428815214677065858',
+  clientSecret: process.env.DISCORD_CLIENT_SECRET || 'mi-QAgi9mg8BgnMBmQaQM28EO_LhwOfn',
   callbackUrl: process.env.DISCORD_CALLBACK_URL || 'http://localhost:3000/api/auth/discord/callback',
   scope: ['identify', 'email']
 }, (accessToken, refreshToken, profile, done) => {
@@ -105,14 +105,14 @@ router.get('/me', (req, res) => {
   if (req.user) {
     res.json(req.user);
   } else {
-    res.status(401).json({ message: 'Not logged in' });
+    res.status(401).json({ message: 'Non connecté' });
   }
 });
 
 // Update user settings
 router.put('/me', (req, res) => {
   if (!req.user) {
-    return res.status(401).json({ message: 'Not logged in' });
+    return res.status(401).json({ message: 'Non connecté' });
   }
 
   const users = readJSON('users.json');

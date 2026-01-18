@@ -14,6 +14,7 @@
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "multer": "^2.0.2",
     "passport": "^0.6.0",
     "passport-discord-auth": "^1.2.0",
     "uuid": "^9.0.0"

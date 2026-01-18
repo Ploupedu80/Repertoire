@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Lucide Icons</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    body {
+      background: #0f1419;
+      color: #fff;
+      padding: 2rem;
+      font-family: Poppins, sans-serif;
+    }
+    .test-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      margin: 1rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid #3b82f6;
+      border-radius: 8px;
+    }
+    .test-icon i[data-lucide] {
+      width: 2em;
+      height: 2em;
+      color: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test des Icônes Lucide</h1>
+  <p>Vérifiez que les icônes s'affichent correctement</p>
+  
+  <div>
+    <h2>Icônes de Test:</h2>
+    <div class="test-icon">
+      <i data-lucide="book"></i>
+      <span>Book (Livre)</span>
+    </div>
+    <div class="test-icon">
+      <i data-lucide="tag"></i>
+      <span>Tag (Étiquette)</span>
+    </div>
+    <div class="test-icon">
+      <i data-lucide="message-square"></i>
+      <span>Message Square (Discussion)</span>
+    </div>
+    <div class="test-icon">
+      <i data-lucide="rocket"></i>
+      <span>Rocket (Fusée)</span>
+    </div>
+    <div class="test-icon">
+      <i data-lucide="shield"></i>
+      <span>Shield (Bouclier)</span>
+    </div>
+    <div class="test-icon">
+      <i data-lucide="check-circle"></i>
+      <span>Check Circle (Vérification)</span>
+    </div>
+  </div>
+
+  <script>
+    console.log('Lucide library status:', typeof lucide);
+    
+    if (typeof lucide !== 'undefined' && lucide && lucide.createIcons) {
+      console.log('Initializing Lucide icons...');
+      lucide.createIcons();
+      console.log('Lucide icons initialized successfully');
+    } else {
+      console.error('Lucide library not available');
+    }
+
+    // Re-initialize after a short delay to ensure DOM is fully rendered
+    setTimeout(() => {
+      if (typeof lucide !== 'undefined' && lucide && lucide.createIcons) {
+        console.log('Re-initializing Lucide icons after DOM ready');
+        lucide.createIcons();
+      }
+    }, 100);
+  </script>
+</body>
+</html>

@@ -3,8 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modifier le serveur - GameHub Repertoire</title>
+  <title>Modifier le serveur - GameHub Repertoire</title>  
+  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/submit-form.css">
+  <style>
+    .edit-server-container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+
+    .edit-server-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .edit-server-header h2 {
+      font-size: 2rem;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .edit-form-wrapper {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .edit-form-wrapper {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .form-section:last-child {
+      border-bottom: none;
+    }
+
+    .form-section h3 {
+      font-size: 1.3rem;
+      color: #2563eb;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      background: #f0f4f8;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .char-count {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+      text-align: right;
+    }
+
+    .error-message {
+      color: #dc2626;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: none;
+      font-weight: 500;
+    }
+
+    .required {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* Image Preview Section */
+    .image-preview-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .preview-item {
+      text-align: center;
+    }
+
+    .preview-item h4 {
+      margin: 0 0 1rem 0;
+      color: #1e293b;
+      font-size: 1rem;
+    }
+
+    .preview-image-container {
+      width: 100%;
+      height: 180px;
+      background: white;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .preview-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-image-placeholder {
+      color: #94a3b8;
+      font-size: 3rem;
+    }
+
+    .preview-filename {
+      font-size: 0.85rem;
+      color: #64748b;
+      word-break: break-all;
+    }
+
+    .form-group-half {
+      grid-column: auto;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .image-preview-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      .edit-actions {
+        flex-direction: column;
+      }
+
+      .edit-actions .btn {
+        max-width: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -23,51 +216,210 @@
   </header>
 
   <main>
-    <div class="submit-container">
-      <h2>Modifier le serveur Discord</h2>
-      <form id="edit-server-form">
-        <input type="hidden" id="server-id" name="server-id">
+    <div class="edit-server-container">
+      <div class="edit-server-header">
+        <h2>✏️ Modifier le serveur Discord</h2>
+        <p style="color: #64748b;">Mettez à jour les informations de votre serveur</p>
+      </div>
 
-        <label for="name">Nom du serveur:</label>
-        <input type="text" id="name" name="name" required>
+      <div class="edit-form-wrapper">
+        <form id="edit-server-form">
+          <input type="hidden" id="server-id" name="server-id">
 
-        <label for="invite-link">Lien d'invitation:</label>
-        <input type="url" id="invite-link" name="invite-link" required>
+          <!-- Section 1: Informations de base -->
+          <div class="form-section">
+            <h3>📋 Informations de Base</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">
+                  Nom du serveur:
+                  <span class="required">*</span>
+                </label>
+                <input type="text" id="name" name="name" maxlength="100" required>
+                <span class="error-message" id="error-name"></span>
+                <span class="char-count"><span id="nameCount">0</span>/100</span>
+              </div>
 
-        <label for="banner">URL de la bannière (optionnel):</label>
-        <input type="url" id="banner" name="banner">
+              <div class="form-group">
+                <label for="invite-link">
+                  Lien d'invitation:
+                  <span class="required">*</span>
+                </label>
+                <input type="url" id="invite-link" name="invite-link" placeholder="https://discord.gg/..." required>
+                <span class="error-message" id="error-invite-link"></span>
+              </div>
+            </div>
 
-        <label for="icon">URL de l'icône (optionnel):</label>
-        <input type="url" id="icon" name="icon">
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label for="member-count">
+                  Nombre de membres:
+                  <span class="required">*</span>
+                </label>
+                <input type="number" id="member-count" name="member-count" min="1" required>
+                <span class="error-message" id="error-member-count"></span>
+              </div>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
+              <div class="form-group form-group-half">
+                <label for="activity-level">
+                  Niveau d'activité:
+                  <span class="required">*</span>
+                </label>
+                <select id="activity-level" name="activity-level" required>
+                  <option value="">Sélectionner...</option>
+                  <option value="Low">🔴 Faible</option>
+                  <option value="Medium">🟡 Moyen</option>
+                  <option value="High">🟢 Élevé</option>
+                </select>
+                <span class="error-message" id="error-activity-level"></span>
+              </div>
+            </div>
+          </div>
 
-        <label for="member-count">Nombre de membres:</label>
-        <input type="number" id="member-count" name="member-count" required min="1">
+          <!-- Section 2: Images avec aperçu -->
+          <div class="form-section">
+            <h3>🖼️ Images du serveur</h3>
+            
+            <div class="image-preview-section">
+              <div class="preview-item">
+                <h4>Logo du serveur</h4>
+                <div class="preview-image-container" id="iconPreviewContainer">
+                  <div class="preview-image-placeholder">🖼️</div>
+                </div>
+                <p class="preview-filename" id="iconFilename">Aucune image</p>
+              </div>
 
-        <label for="server-type">Type de serveur:</label>
-        <select id="server-type" name="server-type" required>
-          <option value="Gaming">Gaming</option>
-          <option value="Community">Community</option>
-          <option value="RP">RP</option>
-          <option value="Dev">Dev</option>
-          <option value="eSport">eSport</option>
-        </select>
+              <div class="preview-item">
+                <h4>Bannière du serveur</h4>
+                <div class="preview-image-container" id="bannerPreviewContainer">
+                  <div class="preview-image-placeholder">📸</div>
+                </div>
+                <p class="preview-filename" id="bannerFilename">Aucune image</p>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="icon">
+                  URL du logo (optionnel):
+                </label>
+                <input type="url" id="icon" name="icon" placeholder="https://exemple.com/logo.png">
+                <span class="error-message" id="error-icon"></span>
+              </div>
 
-        <label for="activity-level">Niveau d'activité:</label>
-        <select id="activity-level" name="activity-level" required>
-          <option value="Low">Faible</option>
-          <option value="Medium">Moyenne</option>
-          <option value="High">Élevée</option>
-        </select>
+              <div class="form-group">
+                <label for="banner">
+                  URL de la bannière (optionnel):
+                </label>
+                <input type="url" id="banner" name="banner" placeholder="https://exemple.com/banner.png">
+                <span class="error-message" id="error-banner"></span>
+              </div>
+            </div>
+          </div>
 
-        <label for="tags">Tags (séparés par des virgules):</label>
-        <input type="text" id="tags" name="tags" placeholder="gaming, community, fun">
+          <!-- Section 3: Catégories et Type -->
+          <div class="form-section">
+            <h3>🎮 Catégories et Type</h3>
+            
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label for="category">
+                  Catégorie:
+                  <span class="required">*</span>
+                </label>
+                <select id="category" name="category" required>
+                  <option value="">Sélectionner...</option>
+                </select>
+                <span class="error-message" id="error-category"></span>
+              </div>
 
-        <button type="submit" class="btn">Mettre à jour le serveur</button>
-        <button type="button" class="btn btn-danger" id="delete-server-btn">Supprimer le serveur</button>
-      </form>
+              <div class="form-group form-group-half">
+                <label for="server-type">
+                  Type de serveur:
+                  <span class="required">*</span>
+                </label>
+                <select id="server-type" name="server-type" required>
+                  <option value="">Sélectionner...</option>
+                  <option value="Gaming">🎮 Gaming</option>
+                  <option value="Community">👥 Community</option>
+                  <option value="RP">🎭 RP</option>
+                  <option value="Dev">💻 Dev</option>
+                  <option value="eSport">🏆 eSport</option>
+                  <option value="Music">🎵 Music</option>
+                </select>
+                <span class="error-message" id="error-server-type"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label for="language">
+                  Langue:
+                </label>
+                <select id="language" name="language">
+                  <option value="">Sélectionner...</option>
+                  <option value="fr">🇫🇷 Français</option>
+                  <option value="en">🇬🇧 Anglais</option>
+                  <option value="es">🇪🇸 Espagnol</option>
+                  <option value="de">🇩🇪 Allemand</option>
+                  <option value="it">🇮🇹 Italien</option>
+                  <option value="pt">🇵🇹 Portugais</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group-half">
+                <label for="region">
+                  Région:
+                </label>
+                <select id="region" name="region">
+                  <option value="">Sélectionner...</option>
+                  <option value="Europe">🌍 Europe</option>
+                  <option value="America">🌎 Amérique</option>
+                  <option value="Asia">🌏 Asie</option>
+                  <option value="Africa">🌍 Afrique</option>
+                  <option value="Oceania">🌊 Océanie</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Description et Tags -->
+          <div class="form-section">
+            <h3>📝 Description et Tags</h3>
+            
+            <div class="form-group">
+              <label for="description">
+                Description:
+                <span class="required">*</span>
+              </label>
+              <textarea id="description" name="description" maxlength="2000" placeholder="Décrivez votre serveur..." required></textarea>
+              <span class="error-message" id="error-description"></span>
+              <span class="char-count"><span id="descCount">0</span>/2000</span>
+            </div>
+
+            <div class="form-group">
+              <label for="tags">
+                Tags (séparés par des virgules):
+              </label>
+              <input type="text" id="tags" name="tags" maxlength="500" placeholder="community, fun, social, gaming...">
+              <span class="char-count"><span id="tagsCount">0</span>/500</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="edit-actions">
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-text">💾 Enregistrer les modifications</span>
+              <span class="btn-loader" style="display: none;">⏳ Enregistrement...</span>
+            </button>
+            <button type="button" class="btn btn-danger" id="delete-server-btn">🗑️ Supprimer le serveur</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">❌ Annuler</button>
+          </div>
+        </form>
+
+        <div id="alert-message" class="alert" style="display: none; margin-top: 1rem;"></div>
+      </div>
     </div>
   </main>
 

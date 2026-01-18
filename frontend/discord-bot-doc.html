@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation Discord Bot - GameHub Repertoire</title>
+  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <script src="js/theme-manager.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <div class="nav-menu">
+        <a href="landing.html" class="nav-link">Accueil</a>
+        <a href="index.html" class="nav-link">Explorer</a>
+        <a href="submit.html" class="nav-link">Ajouter serveur</a>
+        <a href="top-servers.html" class="nav-link">Top serveurs</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <button id="theme-toggle" class="theme-toggle" title="Changer le thème">🌙</button>
+      </div>
+    </nav>
+  </header>
+
+  <main style="padding: 2rem 0;">
+    <div class="container" style="max-width: 900px;">
+      <h1>📚 Documentation - Discord Bot GameHub</h1>
+      
+      <section style="margin: 2rem 0;">
+        <h2>À propos du Bot</h2>
+        <p>Le Discord Bot de GameHub Repertoire est un outil qui permet de :</p>
+        <ul>
+          <li>📢 Recevoir les notifications des nouveaux serveurs ajoutés</li>
+          <li>⭐ Voir les meilleurs serveurs en temps réel</li>
+          <li>🔔 Consulter les derniers avis et commentaires</li>
+          <li>💬 Intégrer GameHub directement dans vos serveurs Discord</li>
+        </ul>
+      </section>
+
+      <section style="margin: 2rem 0;">
+        <h2>Installation du Bot</h2>
+        <ol>
+          <li><strong>Cliquez ici :</strong> <a href="#" style="color: #4f46e5;">Ajouter le bot à votre serveur</a></li>
+          <li><strong>Autorisez les permissions</strong> demandées par Discord</li>
+          <li><strong>Confirmez l'ajout</strong> sur votre serveur</li>
+          <li><strong>Commencez à utiliser</strong> les commandes du bot</li>
+        </ol>
+      </section>
+
+      <section style="margin: 2rem 0;">
+        <h2>Commandes Disponibles</h2>
+        
+        <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+          <h3>/search [terme]</h3>
+          <p><strong>Description :</strong> Recherche un serveur par nom ou mot-clé</p>
+          <p><strong>Exemple :</strong> <code>/search minecraft</code></p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+          <h3>/top-servers</h3>
+          <p><strong>Description :</strong> Affiche les 10 meilleurs serveurs selon les avis</p>
+          <p><strong>Exemple :</strong> <code>/top-servers</code></p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+          <h3>/latest-reviews</h3>
+          <p><strong>Description :</strong> Affiche les derniers avis publiés</p>
+          <p><strong>Exemple :</strong> <code>/latest-reviews</code></p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+          <h3>/stats</h3>
+          <p><strong>Description :</strong> Affiche les statistiques globales</p>
+          <p><strong>Exemple :</strong> <code>/stats</code></p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+          <h3>/help</h3>
+          <p><strong>Description :</strong> Affiche l'aide et les commandes disponibles</p>
+          <p><strong>Exemple :</strong> <code>/help</code></p>
+        </div>
+      </section>
+
+      <section style="margin: 2rem 0;">
+        <h2>Notifications</h2>
+        <p>Vous pouvez configurer le bot pour recevoir des notifications dans un canal spécifique :</p>
+        <ul>
+          <li><strong>Nouveaux serveurs ajoutés</strong> - Recevez une alerte pour chaque nouveau serveur</li>
+          <li><strong>Serveurs avec avis</strong> - Soyez informé des derniers avis publiés</li>
+          <li><strong>Serveurs promotionnés</strong> - Découvrez les meilleurs serveurs du moment</li>
+        </ul>
+        <p>Pour configurer :</p>
+        <code style="display: block; background: var(--bg-secondary); padding: 1rem; margin: 1rem 0; border-radius: 4px;">/setup-notifications #channel-name</code>
+      </section>
+
+      <section style="margin: 2rem 0;">
+        <h2>Support et Questions</h2>
+        <p>Besoin d'aide ? Consultez :</p>
+        <ul>
+          <li>📖 <a href="#">Documentation complète</a></li>
+          <li>💬 <a href="#">Serveur de support</a></li>
+          <li>📧 <a href="#">Nous contacter</a></li>
+          <li>🐛 <a href="#">Signaler un bug</a></li>
+        </ul>
+      </section>
+
+      <section style="margin: 2rem 0; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+        <h2>Conseils et Bonnes Pratiques</h2>
+        <ul>
+          <li>✅ Utilisez les commandes dans des canaux appropriés</li>
+          <li>✅ Configurez les notifications pour rester à jour</li>
+          <li>✅ Explorez les serveurs avec le bot avant de les rejoindre</li>
+          <li>✅ Laissez des avis pour aider la communauté</li>
+          <li>❌ Évitez de spammer les commandes</li>
+        </ul>
+      </section>
+
+      <section style="margin: 2rem 0;">
+        <h2>Politique de Confidentialité</h2>
+        <p>Le bot respecte votre vie privée :</p>
+        <ul>
+          <li>Aucune donnée personnelle n'est collectée</li>
+          <li>Les données sont supprimées après 30 jours d'inactivité</li>
+          <li>Les communications sont chiffrées</li>
+          <li>Consultez notre <a href="privacy-policy.html">politique de confidentialité</a> complète</li>
+        </ul>
+      </section>
+
+      <div style="text-align: center; margin: 2rem 0; padding: 2rem; background: var(--bg-secondary); border-radius: 8px;">
+        <h3>Prêt à commencer ?</h3>
+        <a href="#" class="btn btn-primary" style="display: inline-block; margin-top: 1rem;">Ajouter le Bot</a>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 2rem; background: var(--bg-secondary); margin-top: 2rem; border-top: 1px solid var(--border-color);">
+    <p>&copy; 2025 GameHub Repertoire. Tous droits réservés.</p>
+  </footer>
+
+  <script src="js/cookies.js"></script>
+</body>
+</html>

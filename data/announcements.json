@@ -2,8 +2,17 @@
   {
     "id": "1",
     "title": "Bienvenue sur GameHub Repertoire !",
-    "message": "Découvrez les meilleurs serveurs Discord gaming.",
+    "message": "Découvrez les meilleurs serveurs Discord.",
     "date": "2025-12-23",
     "active": true
+  },
+  {
+    "id": "1768664034910",
+    "title": "erreur",
+    "content": "un errer est survenu",
+    "priority": "critical",
+    "createdBy": "ryan__sg",
+    "createdAt": "2026-01-17T15:33:54.910Z",
+    "updatedAt": "2026-01-17T15:33:54.910Z"
   }
 ]

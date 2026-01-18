@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rpg",
+    "name": "RPG",
+    "description": "Role-Playing Games",
+    "icon": "🎲"
+  },
+  {
+    "id": "fps",
+    "name": "FPS",
+    "description": "First-Person Shooters",
+    "icon": "🔫"
+  },
+  {
+    "id": "mmo",
+    "name": "MMO",
+    "description": "Massively Multiplayer Online",
+    "icon": "🌐"
+  },
+  {
+    "id": "strategy",
+    "name": "Strategy",
+    "description": "Strategy Games",
+    "icon": "♟️"
+  },
+  {
+    "id": "casual",
+    "name": "Casual",
+    "description": "Casual Games",
+    "icon": "🎮"
+  },
+  {
+    "id": "community",
+    "name": "Community",
+    "description": "General Community Servers",
+    "icon": "👥"
+  }
+]

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soumettre un serveur - GameHub Repertoire</title>
+  <title>Soumettre un serveur - GameHub Repertoire</title>  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/submit-form.css">
 </head>
 <body>
   <header>
@@ -27,56 +28,191 @@
   </header>
 
   <main>
-    <h2>Soumettre un serveur Discord</h2>
-    <form id="submit-form">
-      <div>
-        <label for="name">Nom du serveur:</label>
-        <input type="text" id="name" required>
+    <div class="submit-container">
+      <h2>Soumettre un serveur Discord</h2>
+      
+      <!-- Progress Indicator -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
       </div>
-      <div>
-        <label for="inviteLink">Lien d'invitation:</label>
-        <input type="url" id="inviteLink" required>
-      </div>
-      <div>
-        <label for="icon">Icône (URL):</label>
-        <input type="url" id="icon">
-      </div>
-      <div>
-        <label for="banner">Bannière (URL):</label>
-        <input type="url" id="banner">
-      </div>
-      <div>
-        <label for="description">Description:</label>
-        <textarea id="description" required></textarea>
-      </div>
-      <div>
-        <label for="memberCount">Nombre de membres:</label>
-        <input type="number" id="memberCount" required>
-      </div>
-      <div>
-        <label for="activityLevel">Niveau d'activité:</label>
-        <select id="activityLevel" required>
-          <option value="Low">Faible</option>
-          <option value="Medium">Moyenne</option>
-          <option value="High">Élevée</option>
-        </select>
-      </div>
-      <div>
-        <label for="serverType">Type de serveur:</label>
-        <select id="serverType" required>
-          <option value="Gaming">Gaming</option>
-          <option value="Community">Community</option>
-          <option value="RP">RP</option>
-          <option value="Dev">Dev</option>
-          <option value="eSport">eSport</option>
-        </select>
-      </div>
-      <div>
-        <label for="tags">Tags (séparés par des virgules):</label>
-        <input type="text" id="tags">
-      </div>
-      <button type="submit" class="btn">Soumettre</button>
-    </form>
+      <p class="progress-text"><span id="progressPercent">0</span>% complété</p>
+
+      <!-- Alerts -->
+      <div id="alertContainer"></div>
+
+      <form id="submit-form">
+        <!-- Section 1: Infos Basiques -->
+        <fieldset>
+          <legend>📋 Informations Basiques</legend>
+          
+          <div class="form-group">
+            <label for="name">
+              Nom du serveur:
+              <span class="required">*</span>
+              <span class="tooltip" title="Le nom de votre serveur Discord">?</span>
+            </label>
+            <input type="text" id="name" maxlength="100" placeholder="ex: Mon Super Serveur" required>
+            <span class="error-message" id="error-name"></span>
+            <span class="char-count"><span id="nameCount">0</span>/100</span>
+          </div>
+
+          <div class="form-group">
+            <label for="inviteLink">
+              Lien d'invitation:
+              <span class="required">*</span>
+              <span class="tooltip" title="Lien permanent pour rejoindre votre serveur">?</span>
+            </label>
+            <input type="url" id="inviteLink" placeholder="https://discord.gg/votre-lien" required>
+            <span class="error-message" id="error-inviteLink"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="memberCount">
+              Nombre de membres:
+              <span class="required">*</span>
+              <span class="tooltip" title="Nombre approximatif de membres actifs">?</span>
+            </label>
+            <input type="number" id="memberCount" min="1" placeholder="ex: 500" required>
+            <span class="error-message" id="error-memberCount"></span>
+          </div>
+        </fieldset>
+
+        <!-- Section 2: Images -->
+        <fieldset>
+          <legend>🖼️ Images</legend>
+          
+          <div class="form-row">
+            <div class="form-group form-group-half">
+              <label for="icon">
+                Icône du serveur:
+                <span class="tooltip" title="Format: PNG, JPG (max 5 MB)">?</span>
+              </label>
+              <div class="file-input-wrapper">
+                <input type="file" id="icon" accept="image/*">
+                <div class="file-preview" id="iconPreview"></div>
+              </div>
+              <span class="error-message" id="error-icon"></span>
+            </div>
+
+            <div class="form-group form-group-half">
+              <label for="banner">
+                Bannière du serveur:
+                <span class="tooltip" title="Format: PNG, JPG (max 10 MB)">?</span>
+              </label>
+              <div class="file-input-wrapper">
+                <input type="file" id="banner" accept="image/*">
+                <div class="file-preview" id="bannerPreview"></div>
+              </div>
+              <span class="error-message" id="error-banner"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Section 3: Contenu -->
+        <fieldset>
+          <legend>📝 Contenu</legend>
+          
+          <div class="form-group">
+            <label for="description">
+              Description:
+              <span class="required">*</span>
+              <span class="tooltip" title="Décrivez votre serveur (min 50 caractères)">?</span>
+            </label>
+            <textarea id="description" maxlength="2000" placeholder="Décrivez votre serveur, ses activités, sa communauté..." required></textarea>
+            <span class="error-message" id="error-description"></span>
+            <span class="char-count"><span id="descCount">0</span>/2000</span>
+          </div>
+
+          <div class="form-group">
+            <label for="tags">
+              Tags (séparés par des virgules):
+              <span class="tooltip" title="ex: Jeux, Français, Détente, Esports">?</span>
+            </label>
+            <input type="text" id="tags" maxlength="200" placeholder="ex: Jeux, Français, Communauté">
+            <span class="error-message" id="error-tags"></span>
+            <span class="char-count"><span id="tagsCount">0</span>/200</span>
+          </div>
+        </fieldset>
+
+        <!-- Section 4: Configuration -->
+        <fieldset>
+          <legend>⚙️ Configuration</legend>
+          
+          <div class="form-row">
+            <div class="form-group form-group-half">
+              <label for="category">
+                Catégorie:
+                <span class="required">*</span>
+              </label>
+              <select id="category" required>
+                <option value="">Sélectionner une catégorie</option>
+              </select>
+              <span class="error-message" id="error-category"></span>
+            </div>
+
+            <div class="form-group form-group-half">
+              <label for="serverType">
+                Type de serveur:
+                <span class="required">*</span>
+              </label>
+              <select id="serverType" required>
+                <option value="">Sélectionner un type</option>
+                <option value="Gaming">🎮 Gaming</option>
+                <option value="Community">👥 Community</option>
+                <option value="RP">🎭 RP</option>
+                <option value="Dev">💻 Dev</option>
+                <option value="eSport">🏆 eSport</option>
+              </select>
+              <span class="error-message" id="error-serverType"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group form-group-half">
+              <label for="language">
+                Langue principale:
+                <span class="required">*</span>
+              </label>
+              <select id="language" required>
+                <option value="">Sélectionner une langue</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="en">🇺🇸 Anglais</option>
+                <option value="es">🇪🇸 Espagnol</option>
+                <option value="de">🇩🇪 Allemand</option>
+                <option value="it">🇮🇹 Italien</option>
+              </select>
+              <span class="error-message" id="error-language"></span>
+            </div>
+
+            <div class="form-group form-group-half">
+              <label for="region">
+                Région:
+                <span class="required">*</span>
+              </label>
+              <select id="region" required>
+                <option value="">Sélectionner une région</option>
+                <option value="Europe">🇪🇺 Europe</option>
+                <option value="North America">🇺🇸 Amérique du Nord</option>
+                <option value="South America">🇧🇷 Amérique du Sud</option>
+                <option value="Asia">🇯🇵 Asie</option>
+                <option value="Africa">🇿🇦 Afrique</option>
+                <option value="Oceania">🇦🇺 Océanie</option>
+              </select>
+              <span class="error-message" id="error-region"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Buttons -->
+        <div class="form-buttons">
+          <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <span class="btn-text">Soumettre mon serveur</span>
+            <span class="btn-loader" style="display: none;">⏳ Envoi en cours...</span>
+          </button>
+        </div>
+      </form>
+    </div>
   </main>
 
   <footer>

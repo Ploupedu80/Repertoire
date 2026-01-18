@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accès Réservé - GameHub Repertoire</title>
+  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    /* Animated background elements */
+    .bg-elements {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .float-element {
+      position: absolute;
+      opacity: 0.05;
+      font-size: 100px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .float-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .float-element:nth-child(2) { top: 60%; right: 10%; animation-delay: 2s; font-size: 120px; }
+    .float-element:nth-child(3) { bottom: 10%; left: 20%; animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(10deg); }
+    }
+
+    .access-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      padding: 3.5rem;
+      max-width: 520px;
+      width: 90%;
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .access-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .access-header h1 {
+      font-size: 2.2rem;
+      color: #0f0c29;
+      margin-bottom: 0.3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .access-header p {
+      font-size: 1.1rem;
+      color: #5a5a7a;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+      color: white;
+      padding: 0.6rem 1.3rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      letter-spacing: 0.5px;
+    }
+
+    .info-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #302b63;
+    }
+
+    .info-section h3 {
+      color: #0f0c29;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .info-section p {
+      color: #5a5a7a;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      color: #0f0c29;
+      margin-bottom: 0.7rem;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.3s ease;
+      background: #f9f9f9;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #302b63;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(48, 43, 99, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: #a0a0a0;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #302b63 0%, #24243e 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 20px rgba(48, 43, 99, 0.3);
+      font-family: 'Syne', sans-serif;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(48, 43, 99, 0.4);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      display: none;
+      color: #991b1b;
+      background: #fee2e2;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      border-left: 4px solid #ff6b6b;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .shake {
+      animation: shake 0.5s;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      color: #166534;
+      background: #dcfce7;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      border-left: 4px solid #16a34a;
+    }
+
+    .success.show {
+      display: block;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+      margin: 2rem 0;
+    }
+
+    .footer-text {
+      text-align: center;
+      color: #a0a0a0;
+      font-size: 0.85rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-elements">
+    <div class="float-element">🎮</div>
+    <div class="float-element">⚡</div>
+    <div class="float-element">🔥</div>
+  </div>
+
+  <div class="access-container">
+    <div class="access-header">
+      <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+      <h1>GameHub</h1>
+      <p>Repertoire</p>
+      <span class="status-badge">⚙️ EN CONSTRUCTION</span>
+    </div>
+
+    <div class="info-section">
+      <h3>🔐 Zone Réservée aux Développeurs</h3>
+      <p>Tu as été invité à accéder à cette version bêta. Entre le code qu'on t'a donné pour continuer.</p>
+    </div>
+
+    <form id="access-form">
+      <div class="error-message" id="error-message"></div>
+      <div class="success" id="success-message">✓ C'est bon ! Entrée autorisée...</div>
+
+      <div class="form-group">
+        <label for="access-code">Le Code Secret</label>
+        <input 
+          type="password" 
+          id="access-code" 
+          name="access-code" 
+          placeholder="•••••••••••" 
+          required
+          autocomplete="off"
+        >
+      </div>
+
+      <button type="submit" class="btn-submit">Accéder</button>
+    </form>
+
+    <div class="divider"></div>
+
+    <div class="footer-text">
+      T'as pas le code ? Contacte-nous sur Discord 🎮
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('access-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const codeInput = document.getElementById('access-code');
+      const errorMessage = document.getElementById('error-message');
+      const successMessage = document.getElementById('success-message');
+      const submitBtn = document.querySelector('.btn-submit');
+      const code = codeInput.value.trim();
+
+      // Réinitialiser les messages
+      errorMessage.style.display = 'none';
+      successMessage.classList.remove('show');
+
+      // Désactiver le bouton pendant la vérification
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Vérification en cours...';
+
+      try {
+        const response = await fetch('/api/verify-access', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ code: code })
+        });
+
+        if (response.ok) {
+          // Code correct
+          successMessage.classList.add('show');
+          
+          // Redirection après 1 seconde
+          setTimeout(() => {
+            window.location.href = '/index.html';
+          }, 1000);
+        } else {
+          // Code incorrect
+          errorMessage.textContent = '❌ Code d\'accès incorrect. Veuillez réessayer.';
+          errorMessage.style.display = 'block';
+          
+          // Animation de secousse
+          const container = document.querySelector('.access-container');
+          container.classList.add('shake');
+          setTimeout(() => {
+            container.classList.remove('shake');
+          }, 500);
+
+          // Vider le champ
+          codeInput.value = '';
+          codeInput.focus();
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        errorMessage.textContent = '⚠️ Erreur de connexion. Veuillez réessayer.';
+        errorMessage.style.display = 'block';
+        codeInput.value = '';
+        codeInput.focus();
+      } finally {
+        // Réactiver le bouton
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Vérifier l\'Accès';
+      }
+    });
+
+    // Focus automatique sur le champ de code
+    document.getElementById('access-code').focus();
+  </script>
+</body>
+</html>

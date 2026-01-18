@@ -10,7 +10,7 @@ function requireRole(role) {
     if (req.user && req.user.role === role) {
       next();
     } else {
-      res.status(403).json({ message: 'Insufficient permissions' });
+      res.status(403).json({ message: 'Permissions insuffisantes' });
     }
   };
 }
@@ -53,7 +53,7 @@ router.put('/:id', requireRole('developer'), (req, res) => {
     writeJSON('announcements.json', announcements);
     res.json(announcements[index]);
   } else {
-    res.status(404).json({ message: 'Announcement not found' });
+    res.status(404).json({ message: 'Annonce non trouvée' });
   }
 });
 
@@ -63,9 +63,9 @@ router.delete('/:id', requireRole('developer'), (req, res) => {
   const filtered = announcements.filter(a => a.id !== req.params.id);
   if (filtered.length < announcements.length) {
     writeJSON('announcements.json', filtered);
-    res.json({ message: 'Announcement deleted' });
+    res.json({ message: 'Annonce supprimée' });
   } else {
-    res.status(404).json({ message: 'Announcement not found' });
+    res.status(404).json({ message: 'Annonce non trouvée' });
   }
 });
 

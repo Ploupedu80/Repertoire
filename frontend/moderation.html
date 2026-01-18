@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modération - GameHub Repertoire</title>  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .moderation-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+
+    .moderation-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .moderation-header h1 {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .role-badge.developer {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+      color: white;
+    }
+
+    .role-badge.admin {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+    }
+
+    .role-badge.moderator {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+    }
+
+    .role-badge.user {
+      background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+      color: white;
+    }
+
+    .access-denied {
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border: 2px solid #fca5a5;
+      border-radius: 16px;
+      color: #991b1b;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #2563eb;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, #f0f4f8 0%, #e9f0f8 100%);
+      border: 2px solid #cbd5e1;
+      border-bottom: none;
+      color: #1e293b;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .tab-btn:hover {
+      background: linear-gradient(135deg, #e0f2fe 0%, #cffafe 100%);
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .tab-btn.active:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-content h2 {
+      color: #1e293b;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .tab-content p {
+      color: #1e293b;
+    }
+
+    .tab-content strong {
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      color: white;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #1e293b;
+      color: white;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .search-section {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .search-section input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: inherit;
+    }
+
+    .pending-servers-section {
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #f59e0b;
+      border-radius: 12px;
+    }
+
+    .pending-servers-section h3 {
+      color: #92400e;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .approved-servers-section {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border: 2px solid #10b981;
+      border-radius: 12px;
+    }
+
+    .approved-servers-section h3 {
+      color: #065f46;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .result-card:hover {
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+      transform: translateY(-2px);
+      border-color: #2563eb;
+    }
+
+    /* Styles pour les sous-onglets */
+    .sub-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .sub-tab-btn {
+      padding: 0.75rem 1.25rem;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-bottom: none;
+      color: #64748b;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .sub-tab-btn.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .sub-tab-btn:hover {
+      background: #e0f2fe;
+      color: #1e293b;
+    }
+
+    .sub-tab-btn.active:hover {
+      background: #1d4ed8;
+    }
+
+    .sub-tab-content {
+      display: none;
+    }
+
+    .sub-tab-content.active {
+      display: block;
+    }
+
+    .sub-tab-content h3 {
+      color: #1e293b;
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    .result-card.suspended {
+      opacity: 0.7;
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border-color: #fca5a5;
+    }
+
+    .result-card.suspended::before {
+      content: 'SUSPENDU';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .result-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: #1e293b;
+    }
+
+    .result-card p {
+      margin: 0.25rem 0;
+      color: #1e293b;
+      font-size: 0.9rem;
+    }
+
+    .result-card strong {
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .action-buttons button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .action-buttons button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-success:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="/asset/GameHub logo.png" alt="GameHub Logo" class="logo">
+        <h1>GameHub Repertoire</h1>
+      </div>
+      <nav>
+        <div class="nav-left">
+          <a href="landing.html">Accueil</a>
+          <a href="index.html">Explorer</a>
+        </div>
+        <div class="nav-right">
+          <a href="profile.html">Profil</a>
+          <a href="#" id="logout-link">Déconnexion</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="moderation-container">
+      <div class="moderation-header">
+        <h1>Panneau de Modération</h1>
+        <p id="user-info"></p>
+        <span id="role-badge" class="role-badge"></span>
+      </div>
+
+      <div id="access-denied" class="access-denied" style="display:none;">
+        <h2>❌ Accès Refusé</h2>
+        <p>Vous n'avez pas les permissions nécessaires pour accéder à cette page.</p>
+        <a href="profile.html" style="color: #991b1b; text-decoration: underline;">Retour au profil</a>
+      </div>
+
+      <div id="moderation-panel" style="display:none;">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="announcements">📢 Annonces</button>
+          <button class="tab-btn" data-tab="manage">⚙️ Gérer</button>
+          <button class="tab-btn" data-tab="servers">🖥️ Serveurs</button>
+          <button class="tab-btn" data-tab="reviews">💬 Avis</button>
+          <button class="tab-btn" data-tab="tickets">🎫 Tickets</button>
+          <button class="tab-btn" data-tab="partners">🤝 Partenaires</button>
+          <button class="tab-btn" data-tab="personnel">👥 Personnel</button>
+        </div>
+
+        <!-- ANNONCES (Développeur) -->
+        <div id="announcements" class="tab-content active">
+          <h2>Gérer les Annonces</h2>
+          <form id="announcement-form">
+            <div class="form-group">
+              <label>Titre de l'annonce</label>
+              <input type="text" id="announcement-title" required>
+            </div>
+            <div class="form-group">
+              <label>Contenu</label>
+              <textarea id="announcement-content" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Priorité</label>
+              <select id="announcement-priority">
+                <option value="normal">Normal</option>
+                <option value="important">Important</option>
+                <option value="critical">Critique</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">📢 Publier l'annonce</button>
+          </form>
+        </div>
+
+        <!-- GÉRER (Développeur) -->
+        <div id="manage" class="tab-content">
+          <h2>Gestion des Sanctions et Blacklist</h2>
+          
+          <!-- Sous-onglets pour Gérer -->
+          <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtab="sanctions">⚖️ Sanctions</button>
+            <button class="sub-tab-btn" data-subtab="blacklist">🚫 Blacklist</button>
+            <button class="sub-tab-btn" data-subtab="history">📜 Historique</button>
+          </div>
+          
+          <!-- SOUS-ONGLET SANCTIONS -->
+          <div id="manage-sanctions" class="sub-tab-content active">
+            <h3>Gérer les Sanctions</h3>
+            <div class="search-section">
+              <input type="text" id="sanctions-search" placeholder="ID Discord, username ou raison...">
+              <select id="sanctions-filter">
+                <option value="">Toutes les sanctions</option>
+                <option value="active">Sanctions actives</option>
+                <option value="expired">Sanctions expirées</option>
+                <option value="avertissement_oral">Avertissements Oraux</option>
+                <option value="avertissement_1">Avertissements Écrits 1</option>
+                <option value="avertissement_2">Avertissements Écrits 2</option>
+                <option value="ban_temp">Bannissements Temporaires</option>
+                <option value="ban_perm">Bannissements Permanents</option>
+                <option value="blacklist">Blacklist</option>
+              </select>
+              <button class="btn-submit" onclick="loadSanctionsList()">🔍 Rechercher</button>
+            </div>
+            <div id="sanctions-list" class="result-list"></div>
+          </div>
+          
+          <!-- SOUS-ONGLET BLACKLIST -->
+          <div id="manage-blacklist" class="sub-tab-content">
+            <h3>Gérer la Blacklist</h3>
+            <div class="search-section">
+              <input type="text" id="blacklist-search" placeholder="ID Discord ou username...">
+              <button class="btn-submit" onclick="loadBlacklist()">🔍 Rechercher</button>
+            </div>
+            <div id="blacklist-list" class="result-list"></div>
+          </div>
+          
+          <!-- SOUS-ONGLET HISTORIQUE -->
+          <div id="manage-history" class="sub-tab-content">
+            <h3>Historique des Sanctions</h3>
+            <div class="search-section">
+              <input type="text" id="history-search" placeholder="ID Discord, username ou modérateur...">
+              <select id="history-filter">
+                <option value="">Tout l'historique</option>
+                <option value="last7days">7 derniers jours</option>
+                <option value="last30days">30 derniers jours</option>
+                <option value="last90days">90 derniers jours</option>
+              </select>
+              <button class="btn-submit" onclick="loadSanctionsHistory()">🔍 Rechercher</button>
+            </div>
+            <div id="history-list" class="result-list"></div>
+          </div>
+        </div>
+
+        <!-- SERVEURS (Développeur) -->
+        <div id="servers" class="tab-content">
+          <h2>Gérer les Serveurs</h2>
+          
+          <!-- Serveurs en attente -->
+          <div class="pending-servers-section">
+            <h3>🕒 Serveurs en Attente d'Approbation</h3>
+            <div id="pending-servers-list" class="result-list"></div>
+          </div>
+          
+          <!-- Serveurs approuvés -->
+          <div class="approved-servers-section">
+            <h3>✅ Serveurs Approuvés</h3>
+            <div class="search-section">
+              <input type="text" id="servers-search" placeholder="Nom du serveur ou ID...">
+              <select id="servers-filter">
+                <option value="">Tous les serveurs</option>
+                <option value="true">Serveurs suspendus</option>
+                <option value="false">Serveurs actifs</option>
+              </select>
+              <button class="btn-submit">🔍 Rechercher</button>
+            </div>
+            <div id="servers-list" class="result-list"></div>
+          </div>
+        </div>
+
+        <!-- AVIS ET COMMENTAIRES (Modérateur & Admin & Développeur) -->
+        <div id="reviews" class="tab-content">
+          <h2>💬 Gérer les Avis et Commentaires</h2>
+          
+          <div class="search-section">
+            <input type="text" id="reviews-search" placeholder="Rechercher par serveur, utilisateur...">
+            <select id="reviews-filter">
+              <option value="">Tous les avis</option>
+              <option value="5">⭐⭐⭐⭐⭐ 5 étoiles</option>
+              <option value="4">⭐⭐⭐⭐ 4 étoiles</option>
+              <option value="3">⭐⭐⭐ 3 étoiles</option>
+              <option value="2">⭐⭐ 2 étoiles</option>
+              <option value="1">⭐ 1 étoile</option>
+            </select>
+            <button class="btn-submit" onclick="loadReviewsList()">🔍 Rechercher</button>
+          </div>
+          
+          <div id="reviews-list" class="result-list"></div>
+        </div>
+
+        <!-- SANCTIONS (Développeur & Admin) -->
+        <div id="sanctions" class="tab-content">
+          <h2>Ajouter une Sanction</h2>
+          <form id="sanctions-form">
+            <div class="form-group">
+              <label>ID Discord de l'utilisateur</label>
+              <input type="text" id="sanction-user-id" required>
+            </div>
+            <div class="form-group">
+              <label>Type de sanction</label>
+              <select id="sanction-type" required>
+                <option value="">Sélectionner...</option>
+                <option value="avertissement_oral">Avertissement Oral</option>
+                <option value="avertissement_1">Avertissement Écrit 1</option>
+                <option value="avertissement_2">Avertissement Écrit 2</option>
+                <option value="ban_temp">Bannissement Temporaire</option>
+                <option value="ban_perm">Bannissement Permanent</option>
+                <option value="blacklist">Blacklist (Blocage du Site)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Durée (en secondes, optionnel)</label>
+              <input type="number" id="sanction-duration" placeholder="Laisser vide pour permanent">
+            </div>
+            <div class="form-group">
+              <label>Raison</label>
+              <textarea id="sanction-reason" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">⚖️ Appliquer la sanction</button>
+          </form>
+        </div>
+
+        <!-- TICKETS (Admin & Modérateur) -->
+        <div id="tickets" class="tab-content">
+          <h2>Gérer les Tickets</h2>
+          <div id="tickets-list" class="result-list"></div>
+        </div>
+
+        <!-- PARTENAIRES (Développeur) -->
+        <div id="partners" class="tab-content">
+          <h2>Gérer les Partenaires</h2>
+          <form id="partner-form">
+            <div class="form-group">
+              <label>Nom du partenaire</label>
+              <input type="text" id="partner-name" placeholder="Ex: Discord France" required>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="partner-description" placeholder="Description du partenaire" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Image (URL ou upload)</label>
+              <input type="file" id="partner-image" accept="image/*">
+              <small style="color: #64748b; display: block; margin-top: 0.5rem;">ou</small>
+              <input type="text" id="partner-image-url" placeholder="https://example.com/image.png">
+            </div>
+            <div class="form-group">
+              <label>Lien de redirection externe</label>
+              <input type="url" id="partner-external-link" placeholder="https://exemple.com" required>
+              <small style="color: #64748b; display: block; margin-top: 0.5rem;">Le lien vers lequel rediriger les utilisateurs</small>
+            </div>
+            <button type="submit" class="btn-submit">➕ Ajouter le partenaire</button>
+          </form>
+          <div id="partners-list" class="result-list" style="margin-top: 2rem;"></div>
+        </div>
+
+        <!-- PERSONNEL (Développeur) -->
+        <div id="personnel" class="tab-content">
+          <h2>Gérer le Personnel</h2>
+          <div class="search-section">
+            <input type="text" id="personnel-search" placeholder="Nom d'utilisateur, Discord ID ou rôle...">
+            <select id="personnel-filter">
+              <option value="">Tous les rôles</option>
+              <option value="developer">Développeur</option>
+              <option value="admin">Admin</option>
+              <option value="moderator">Modérateur</option>
+              <option value="user">Utilisateur</option>
+            </select>
+            <button class="btn-submit" onclick="loadPersonnel()">🔍 Rechercher</button>
+          </div>
+          <div id="personnel-list" class="result-list"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 GameHub Repertoire. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="privacy-policy.html">Politique de confidentialité</a>
+        <a href="terms-of-service.html">Conditions d'utilisation</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/moderation.js"></script>
+</body>
+</html>

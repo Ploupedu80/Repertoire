@@ -1,0 +1,20 @@
+[
+  {
+    "id": "f5067d9a-fad6-4e91-87ae-baf19ec79ade",
+    "serverId": "a63c1db7-902d-4cd8-a029-e8dc47bc7481",
+    "userId": "698982039105437787",
+    "username": "ryan__sg",
+    "rating": 3,
+    "comment": "test",
+    "createdAt": "2026-01-17T14:58:37.563Z"
+  },
+  {
+    "id": "421ccbb0-4ff6-4ade-b5bd-21cc327a2009",
+    "serverId": "a63c1db7-902d-4cd8-a029-e8dc47bc7481",
+    "userId": "698982039105437787",
+    "username": "ryan__sg",
+    "rating": 1,
+    "comment": "ns",
+    "createdAt": "2026-01-18T11:50:12.654Z"
+  }
+]

@@ -1,26 +1,32 @@
 [
   {
-    "id": "f63676b5-f156-400c-9184-e180a367aa65",
-    "userId": "4",
+    "id": "1cabaeff-6917-4d6d-834b-062e00ab55ff",
+    "userId": "698982039105437787",
+    "username": "ryan__sg",
     "subject": "test",
-    "message": "blablabla\n",
-    "response": "",
-    "status": "open"
-  },
-  {
-    "id": "cd22b63d-3e2a-4483-ae86-22f3dbe5aeeb",
-    "userId": "1",
-    "subject": "test",
-    "message": "dddd",
-    "response": "",
-    "status": "open"
-  },
-  {
-    "id": "3868cc5c-d59b-408d-9b47-3e1362e5f386",
-    "userId": "1",
-    "subject": "test",
-    "message": "bbllblblb",
-    "response": "",
-    "status": "open"
+    "message": "test",
+    "category": "bug",
+    "priority": "high",
+    "status": "resolved",
+    "responses": [
+      {
+        "id": "138237ee-c291-4e2e-b17c-c4bbf8927ff4",
+        "userId": "698982039105437787",
+        "username": "ryan__sg",
+        "message": "test 002",
+        "isAdmin": true,
+        "createdAt": "2026-01-18T11:47:58.366Z"
+      },
+      {
+        "id": "783f8a67-f1ff-447c-a1c8-27b10e7ff7b5",
+        "userId": "698982039105437787",
+        "username": "ryan__sg",
+        "message": "test okk",
+        "isAdmin": true,
+        "createdAt": "2026-01-18T11:49:06.327Z"
+      }
+    ],
+    "createdAt": "2026-01-18T11:47:39.975Z",
+    "updatedAt": "2026-01-18T11:49:20.189Z"
   }
 ]

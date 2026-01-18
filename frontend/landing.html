@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameHub Repertoire - Accueil</title>
+  <title>GameHub Repertoire - Trouvez votre communauté Discord</title>
+  <link rel="icon" type="image/png" href="/asset/GameHub logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <script src="js/theme-manager.js"></script>
 </head>
 <body>
   <header>
@@ -15,9 +19,10 @@
       </div>
       <nav>
         <div class="nav-left">
-          <a href="#" id="enter-site">Entrer sur le site</a>
+          <a href="#" id="enter-site">Accéder au catalogue</a>
         </div>
         <div class="nav-right">
+          <button id="theme-toggle" class="theme-toggle" title="Changer le thème" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem;">🌙</button>
           <a href="#" id="login-link" class="btn btn-primary">Connexion</a>
         </div>
       </nav>
@@ -25,96 +30,181 @@
   </header>
 
   <main class="landing-main">
-    <section class="hero">
-      <h2>🎮 Bienvenue sur GameHub Repertoire</h2>
-      <p class="hero-subtitle">Le répertoire public français des meilleurs serveurs Discord gaming</p>
-      <div class="hero-buttons">
-        <button class="btn btn-primary" id="explore-btn">🚀 Explorer les serveurs</button>
-      </div>
-    </section>
-
-    <section class="stats-section">
-      <div class="stats-container">
-        <div class="stat-item">
-          <div class="stat-number" id="total-servers">3</div>
-          <div class="stat-label">Serveurs actifs</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" id="total-users">4</div>
-          <div class="stat-label">Utilisateurs inscrits</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" id="total-members">2,100</div>
-          <div class="stat-label">Membres Discord</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" id="total-reviews">8,942</div>
-          <div class="stat-label">Avis et commentaires</div>
+    <!-- Hero Section Minimaliste -->
+    <section class="hero-landing">
+      <div class="hero-landing-content">
+        <h1>Trouve ton serveur Discord préféré 🚀</h1>
+        <p>Un simple annuaire de serveurs Discord en français. Découvre des communautés sympas et rejoins-les directement.</p>
+        <div class="hero-landing-actions">
+          <button class="btn btn-primary" id="explore-btn">Explore les serveurs →</button>
+          <a href="submit.html" class="btn btn-outline">+ Ajouter mon serveur</a>
         </div>
       </div>
     </section>
 
+    <!-- Section Valeurs -->
+    <section class="values-section">
+      <div class="values-content">
+        <div class="value-item">
+          <h3>✅ Pas de pièges</h3>
+          <p>Chaque serveur est validé à la main. Fini les arnaqueurs et les serveurs morts.</p>
+        </div>
+        <div class="value-item">
+          <h3>⭐ Des avis honnêtes</h3>
+          <p>Des vrais joueurs qui donnent leur avis sans filtrer. Pas de fakes, juste la vérité.</p>
+        </div>
+        <div class="value-item">
+          <h3>🎮 Made by gamers</h3>
+          <p>On comprend ce que tu cherches parce qu'on joue aussi. C'est pas compliqué, c'est logique.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Comment ça marche -->
+    <section class="how-it-works">
+      <h2>C'est simple. 3 clics. C'est tout. ⚡</h2>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1️⃣</div>
+          <h3>Explore</h3>
+          <p>Scroll les serveurs ou filtre par ce qui t'intéresse</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2️⃣</div>
+          <h3>Lis les avis</h3>
+          <p>Vois ce que les autres joueurs en pensent vraiment</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3️⃣</div>
+          <h3>Rejoins</h3>
+          <p>Un clic et tu es dedans. Fin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Pour les administrateurs -->
+    <section class="for-admins">
+      <div class="admin-content">
+        <h2>T'as un serveur ? 👑</h2>
+        <p>Enregistre-le gratuitement et fais le connaître. De nouveaux joueurs t'attendent, sérieusement.</p>
+        <a href="submit.html" class="btn btn-primary">Ajouter mon serveur</a>
+      </div>
+    </section>
+
+    <!-- Section Partenaires -->
     <section class="partners-section">
-      <h3>🤝 Nos Partenaires</h3>
-      <p class="partners-subtitle">Nous travaillons avec les meilleures communautés gaming</p>
-      <div class="partners-grid">
-        <div class="partner-card">
-          <div class="partner-logo">🎯</div>
-          <div class="partner-info">
-            <h4>Discord France</h4>
-            <p>Communauté officielle française</p>
-          </div>
-        </div>
-        <div class="partner-card">
-          <div class="partner-logo">🎮</div>
-          <div class="partner-info">
-            <h4>Gaming Corp</h4>
-            <p>Réseau de serveurs gaming</p>
-          </div>
-        </div>
-        <div class="partner-card">
-          <div class="partner-logo">🏆</div>
-          <div class="partner-info">
-            <h4>eSport France</h4>
-            <p>Organisation esport française</p>
-          </div>
-        </div>
-        <div class="partner-card">
-          <div class="partner-logo">💻</div>
-          <div class="partner-info">
-            <h4>Dev Community</h4>
-            <p>Communauté développeurs</p>
-          </div>
-        </div>
-        <div class="partner-card">
-          <div class="partner-logo">🎨</div>
-          <div class="partner-info">
-            <h4>Creative Hub</h4>
-            <p>Studio de création digitale</p>
-          </div>
-        </div>
-        <div class="partner-card">
-          <div class="partner-logo">🎵</div>
-          <div class="partner-info">
-            <h4>Music Makers</h4>
-            <p>Label musical indépendant</p>
-          </div>
-        </div>
+      <div class="partners-content">
+        <h2>Nos Partenaires 🤝</h2>
+        <p>Les meilleurs serveurs Discord pour les joueurs</p>
+      </div>
+      <div class="partners-grid" id="partners-grid">
+        <!-- Partenaires chargés automatiquement -->
       </div>
     </section>
+
   </main>
 
   <footer>
     <div class="footer-content">
       <p>&copy; 2025 GameHub Repertoire. Tous droits réservés.</p>
       <div class="footer-links">
-        <a href="privacy-policy.html">Politique de confidentialité</a>
-        <a href="terms-of-service.html">Conditions d'utilisation</a>
+        <a href="legal-mentions.html">Mentions Légales</a>
+        <a href="privacy-policy.html">Confidentialité</a>
+        <a href="terms-of-service.html">Conditions</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
 
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-banner-content">
+      <div class="cookie-banner-text">
+        <h3>🍪 Consentement aux Cookies</h3>
+        <p>Nous utilisons des cookies pour améliorer votre expérience. Les cookies essentiels sont toujours actifs. 
+        Vous pouvez personnaliser votre consentement pour les cookies analytiques et marketing.</p>
+        <p><a href="privacy-policy.html">En savoir plus sur notre politique de confidentialité</a></p>
+      </div>
+      <div class="cookie-banner-buttons">
+        <button id="reject-cookies" class="cookie-btn cookie-btn-secondary">Refuser</button>
+        <button id="customize-cookies" class="cookie-btn cookie-btn-secondary">Personnaliser</button>
+        <button id="accept-all-cookies" class="cookie-btn cookie-btn-primary">Accepter tout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Preferences Modal -->
+  <div id="cookie-modal" class="cookie-modal">
+    <div class="cookie-modal-content">
+      <div class="cookie-modal-header">
+        <h2>Préférences de Cookies</h2>
+        <button id="close-cookie-modal" class="close-btn">&times;</button>
+      </div>
+      
+      <div class="cookie-modal-body">
+        <div class="cookie-preference">
+          <div class="preference-header">
+            <h3>Cookies Essentiels</h3>
+            <span class="badge-essential">Obligatoire</span>
+          </div>
+          <p>Les cookies essentiels permettent au site de fonctionner correctement. Ils permettent l'authentification et la gestion de la session.</p>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-essential" checked disabled>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="cookie-preference">
+          <div class="preference-header">
+            <h3>Cookies Analytiques</h3>
+            <span class="badge-analytics">Optionnel</span>
+          </div>
+          <p>Ces cookies nous aident à comprendre comment vous utilisez le site et à améliorer votre expérience. Ils collectent des données anonymes sur le comportement de visite.</p>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="cookie-preference">
+          <div class="preference-header">
+            <h3>Cookies Marketing</h3>
+            <span class="badge-marketing">Optionnel</span>
+          </div>
+          <p>Ces cookies permettent de personnaliser vos annonces en fonction de vos intérêts et d'évaluer l'efficacité des campagnes marketing.</p>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-modal-footer">
+        <button id="save-preferences" class="cookie-btn cookie-btn-primary">Enregistrer les préférences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal d'avertissement de redirection partenaire -->
+  <div id="partner-redirect-modal" class="partner-redirect-modal">
+    <div class="partner-redirect-content">
+      <div class="partner-redirect-header">
+        <h2>⚠️ Redirection externe</h2>
+        <button class="close-partner-modal">&times;</button>
+      </div>
+      <div class="partner-redirect-body">
+        <p>Vous allez être redirigé vers le site partenaire:</p>
+        <p id="partner-redirect-name" style="font-weight: bold; font-size: 1.2rem; margin: 1rem 0;">Nom du partenaire</p>
+        <p style="color: #6b7280; font-size: 0.95rem;">Êtes-vous sûr de vouloir continuer ?</p>
+      </div>
+      <div class="partner-redirect-footer">
+        <button class="btn-cancel" onclick="closePartnerModal()">Annuler</button>
+        <button class="btn-confirm" onclick="confirmPartnerRedirect()">Continuer</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/landing.js"></script>
+  <script src="js/cookies.js"></script>
 </body>
 </html>
