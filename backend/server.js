@@ -72,8 +72,8 @@ app.post('/api/verify-access', (req, res) => {
 
 // Middleware to verify access for all pages except access.html and API routes
 app.use((req, res, next) => {
-  // Skip verification for API routes, assets, and access page
-  if (req.path.startsWith('/api/') || req.path.startsWith('/asset/') || req.path === '/access.html') {
+  // Skip verification for API routes, assets, static files (css, js, img), and access page
+  if (req.path.startsWith('/api/') || req.path.startsWith('/asset/') || req.path.startsWith('/css/') || req.path.startsWith('/js/') || req.path.startsWith('/img/') || req.path === '/access.html') {
     return next();
   }
 
