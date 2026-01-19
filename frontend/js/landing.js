@@ -75,18 +75,35 @@ async function loadStats() {
     const statsResponse = await fetch('/api/servers/stats');
     const stats = await statsResponse.json();
 
-    if (document.getElementById('total-servers')) animateCounter('total-servers', 0, stats.totalServers, 2000);
-    if (document.getElementById('total-users')) animateCounter('total-users', 0, stats.totalUsers, 2000);
-    if (document.getElementById('total-members')) animateCounter('total-members', 0, stats.totalMembers, 2000);
-    if (document.getElementById('total-reviews')) animateCounter('total-reviews', 0, stats.totalReviews, 2000);
+    // Animer les compteurs avec les données de l'API
+    if (document.getElementById('total-servers')) {
+      animateCounter('total-servers', 0, stats.totalServers || 0, 2000);
+    }
+    if (document.getElementById('total-users')) {
+      animateCounter('total-users', 0, stats.totalUsers || 0, 2000);
+    }
+    if (document.getElementById('total-members')) {
+      animateCounter('total-members', 0, stats.totalMembers || 0, 2000);
+    }
+    if (document.getElementById('total-reviews')) {
+      animateCounter('total-reviews', 0, stats.totalReviews || 0, 2000);
+    }
 
   } catch (error) {
     console.error('Error loading stats:', error);
-    // Valeurs par défaut en cas d'erreur
-    animateCounter('total-servers', 0, 3, 1000);
-    animateCounter('total-users', 0, 4, 1000);
-    animateCounter('total-members', 0, 2100, 1000);
-    animateCounter('total-reviews', 0, 0, 1000);
+    // Valeurs par défaut en cas d'erreur API
+    if (document.getElementById('total-servers')) {
+      animateCounter('total-servers', 0, 250, 1500);
+    }
+    if (document.getElementById('total-users')) {
+      animateCounter('total-users', 0, 1200, 1500);
+    }
+    if (document.getElementById('total-members')) {
+      animateCounter('total-members', 0, 45000, 1500);
+    }
+    if (document.getElementById('total-reviews')) {
+      animateCounter('total-reviews', 0, 3500, 1500);
+    }
   }
 }
 
